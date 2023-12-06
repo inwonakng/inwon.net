@@ -12,7 +12,7 @@ export default async function Page() {
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
   return (
     <>
-      <div className="flex divide-y divide-gray-200 dark:divide-gray-700 mt-8 flex-col items-center justify-center space-x-6">
+      <div className="mt-8 flex flex-col items-center justify-center space-x-6 divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-x-2 pb-4 pt-4 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
             Tags

@@ -23,7 +23,7 @@ export default function Page() {
   //
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts = filteredPosts
-    // initialDisplaydisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredPosts
+  // initialDisplaydisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredPosts
 
   return (
     <>
