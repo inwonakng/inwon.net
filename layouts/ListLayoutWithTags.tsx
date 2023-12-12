@@ -158,7 +158,7 @@ export default function ListLayoutWithTags({
               <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
             )}
           </div>
-          <div className="col-span-1 overflow-auto hidden h-full max-h-screen flex-wrap rounded pt-5 bg-sky-200/50 shadow-md dark:bg-gray-900/50 dark:shadow-gray-800/40 sm:flex">
+          <div className="col-span-1 overflow-auto hidden h-full max-h-screen flex-wrap rounded pt-5 bg-sky-300/30 shadow-md dark:bg-gray-700/30 dark:shadow-gray-800/40 sm:flex">
             {/* <div className=""> */}
             <div className="px-4 w-full flex flex-row gap-4 items-center">
               <div className="w-1/6">

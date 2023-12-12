@@ -85,11 +85,11 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   )}
                   {(next || prev) && (
                     // <div className="flex justify-between items-center py-4 flex-col space-y-2 md:flex-row md:space-y-0">
-                    <div className="grid grid-rows-2 gap-2 md:grid-cols-2">
+                    <div className="grid gap-2 md:grid-cols-2">
                       {prev && prev.path && (
                         <Link href={`/${prev.path}`}>
-                          <div className="border-1 rounded-md border-solid border-primary-400 bg-gray-200 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                            <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                          <div className="border-1 rounded-md border-solid border-primary-400 bg-gray-200/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                            <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-100">
                               &larr; Previous Article
                             </h2>
                             {prev.title}
@@ -98,8 +98,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       )}
                       {next && next.path && (
                         <Link href={`/${next.path}`}>
-                          <div className="border-1 rounded-md border-solid border-primary-400 bg-gray-200 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                            <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                          <div className="border-1 rounded-md border-solid border-primary-400 bg-gray-200/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                            <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-100">
                               Next Article &rarr;
                             </h2>
                             {next.title}
@@ -122,7 +122,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             </div>
           </header>
           <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-            <div className="prose max-w-none break-words pb-8 pt-10 dark:prose-invert">
+            <div className="prose max-w-none break-words py-4 dark:prose-invert">
               {children}
             </div>
             <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
