@@ -11,6 +11,7 @@ module.exports = {
     './components/**/*.{js,ts,tsx}',
     './layouts/**/*.{js,ts,tsx}',
     './data/**/*.mdx',
+    './data/**/*.md',
   ],
   darkMode: 'class',
   theme: {
@@ -117,7 +118,7 @@ module.exports = {
             },
           },
         },
-        invert: {
+        dark: {
           css: {
             color: theme('colors.gray.300'),
             a: {

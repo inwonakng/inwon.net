@@ -12,13 +12,13 @@ export default async function Page() {
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
   return (
     <>
-      <div className="mt-8 flex flex-col items-center justify-center space-x-6 divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="w-full mt-8 flex flex-col items-center justify-center space-x-6 divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-x-2 pb-4 pt-4 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
             Tags
           </h1>
         </div>
-        <div className="flex max-w-lg flex-wrap">
+        <div className="flex px-8 flex-wrap">
           {tagKeys.length === 0 && 'No tags found.'}
           {sortedTags.map((t) => {
             return (
