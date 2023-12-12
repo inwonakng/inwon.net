@@ -16,10 +16,18 @@ const projectsData = [
   //   href: '/blog/the-time-machine',
   // },
   {
+    title: 'Private Supply Chain using Chainlink CCIP',
+    description: `Our submission for Chalink Constellation Hackathon 2023.
+    Implemented a supply chain scenario using Chainlink's CCIP protocol and Circom's ZK circuits to enable a private supply chain solution.
+    `,
+    imgSrc: '/static/images/chainlink-ccip-zk-supply-chain/chainlink-constellation-hackathon-banner.png',
+    href: '/blog/chainlink-ccip-zk-supply-chain',
+  },
+  {
     title: 'Crowdsourcing on Algorand',
-    description: `My submission for Algorand foundation's Mega Ace Hackathon project. 
-    I implemented a full-stack app that uses Algorand as the backend for creating arbitrary data repositories that can receive submissions from anyone on the blockchain.
-    Got second place in the RPI local competition!`,
+    description: `Submission for Algorand foundation's Mega Ace Hackathon project. 
+    Implemented a full-stack app that uses Algorand as the backend for creating arbitrary data repositories that can receive submissions from anyone on the blockchain.
+    `,
     imgSrc: '',
     href: '/blog/crowdsourcing-on-algorand',
   },
