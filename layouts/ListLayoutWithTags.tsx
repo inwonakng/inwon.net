@@ -93,7 +93,7 @@ export default function ListLayoutWithTags({
     <>
       <div>
         <div className="pb-4 pt-6">
-          <h1 className="mb-4 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
+          <h1 className="mb-4 text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
             {title}
           </h1>
           <div className="max-w relative">
@@ -120,7 +120,7 @@ export default function ListLayoutWithTags({
             </svg>
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
           <div className="col-span-3">
             <ul>
               {displayPosts.map((post) => {

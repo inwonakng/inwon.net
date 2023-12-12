@@ -9,7 +9,7 @@ export default function Projects() {
     <>
       <div className="w-full">
         <div className="pb-2 pt-4">
-          <h1 className="text-3xl font-extrabold leading-9 text-gray-900 dark:text-gray-100">
+          <h1 className="text-2xl font-extrabold leading-9 text-gray-900 dark:text-gray-100">
             Projects
           </h1>
         </div>

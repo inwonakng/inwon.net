@@ -14,7 +14,7 @@ export default async function Page() {
     <>
       <div className="mt-8 flex w-full flex-col items-center justify-center space-x-6 divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-x-2 pb-4 pt-4 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
+          <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
             Tags
           </h1>
         </div>
