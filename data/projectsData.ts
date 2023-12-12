@@ -28,7 +28,7 @@ const projectsData = [
     description: `Submission for Algorand foundation's Mega Ace Hackathon project. 
     Implemented a full-stack app that uses Algorand as the backend for creating arbitrary data repositories that can receive submissions from anyone on the blockchain.
     `,
-    imgSrc: '',
+    imgSrc: '/static/images/crowdsourcing-on-algorand/algorand-mega-ace-hackathon.png',
     href: '/blog/crowdsourcing-on-algorand',
   },
   {
@@ -36,7 +36,7 @@ const projectsData = [
     description: `Class project for Security and Privacy of Machine Learing. 
     Built a framework mimicing pytorch API to implement aggregator functions and simulate federated learning situations with delays in client updates.
     Also implemented a new aggregation method using Agglomerative Clustering, as well as designing/implementing an improved version of staleness weighting function.`,
-    imgSrc: '',
+    imgSrc: '/static/images/robust-fl/diagram.png',
     href: '/blog/robust-fl',
   },
   {
@@ -44,7 +44,7 @@ const projectsData = [
     description: `Class project for AI and Blockchain. 
     Developed a chrome extension that can insert html into google search results and filters "spam" results. 
     Uses Ethereum Network (currently Goerli testnet) to store user labeled data to update the shared model.`,
-    imgSrc: '',
+    imgSrc: '/static/images/clean-my-web/youtube-screenshot.png',
     href: '/blog/clean-my-web',
   },
   {
@@ -52,7 +52,7 @@ const projectsData = [
     description: `Built a website using google sheets API to collect responses for people's perception of Gerrymandering.
     Also built a tool for creating custom maps.
     `,
-    imgSrc: '',
+    imgSrc: '/static/images/crowdsource-gerrymandering/survey-site-screenshot.png',
     href: '/blog/crowdsource-gerrymandering',
   },
   {
@@ -61,7 +61,7 @@ const projectsData = [
     Worked with a team to gather various geographic data on the northeastern region to create 
     a regression model of possible landslide danger to the power infrastructures of Northeastern US. 
     Built an interactive platform to view each infrastructures and also filter by danger level/state region.`,
-    imgSrc: '',
+    imgSrc: '/static/images/critical-infrastructures/dashboard-screenshot.png',
     href: '/blog/critical-infrastructures',
   },
 ]
