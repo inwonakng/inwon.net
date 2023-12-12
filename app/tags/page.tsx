@@ -12,29 +12,20 @@ export default async function Page() {
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
   return (
     <>
-      <div className="mt-8 flex w-full flex-col items-center justify-center space-x-6 divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="mt-2 flex w-full flex-col items-center justify-center space-x-6 divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-x-2 pb-4 pt-4 md:space-y-5">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
             Tags
           </h1>
         </div>
-        <div className="flex flex-wrap px-8">
+        <ul className="flex flex-wrap gap-x-2 gap-y-2 pt-8">
           {tagKeys.length === 0 && 'No tags found.'}
-          {sortedTags.map((t) => {
-            return (
-              <div key={t} className="mb-2 mr-5 mt-2">
-                <Tag text={t} />
-                <Link
-                  href={`/tags/${slug(t)}`}
-                  className="-ml-2 text-sm font-semibold uppercase text-gray-600 dark:text-gray-300"
-                  aria-label={`View posts tagged ${t}`}
-                >
-                  {` (${tagCounts[t]})`}
-                </Link>
-              </div>
-            )
-          })}
-        </div>
+          {sortedTags.map((t) =>
+            <li>
+              <Tag tagName={t} text={`${t} (${tagCounts[t]})`} />
+            </li>
+          )}
+        </ul>
       </div>
     </>
   )

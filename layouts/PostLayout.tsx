@@ -57,7 +57,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2">
                   <dt className="sr-only">Authors</dt>
                   <dd>
-                    <ul className="flex-col justify-center xl:pt-4">
+                    <ul className="flex-col justify-center xl:pt-2">
                       {authorDetails.map((author) => (
                         <li
                           className="flex items-center justify-center space-x-2"
@@ -72,15 +72,17 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     </ul>
                   </dd>
                   {tags && (
-                    <div className="py-4">
+                    <div className="flex flex-col py-4 gap-y-2">
                       <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                         Tags
                       </h2>
-                      <div className="flex flex-wrap justify-center">
+                      <ul className="flex flex-wrap justify-center space-x-2">
                         {tags.map((tag) => (
-                          <Tag key={tag} text={tag} />
+                        <li>
+                          <Tag key={tag} tagName={tag} text={tag} />
+                        </li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
                   )}
                   {(next || prev) && (
@@ -88,7 +90,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     <div className="grid gap-2 md:grid-cols-2">
                       {prev && prev.path && (
                         <Link href={`/${prev.path}`}>
-                          <div className="border-1 rounded-md border-solid border-primary-400 bg-gray-200/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                          <div className="border-1 rounded-md border-solid border-primary-400 bg-gray-400/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                             <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-100">
                               &larr; Previous Article
                             </h2>
@@ -98,7 +100,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       )}
                       {next && next.path && (
                         <Link href={`/${next.path}`}>
-                          <div className="border-1 rounded-md border-solid border-primary-400 bg-gray-200/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                          <div className="border-1 rounded-md border-solid border-primary-400 bg-gray-400/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                             <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-100">
                               Next Article &rarr;
                             </h2>

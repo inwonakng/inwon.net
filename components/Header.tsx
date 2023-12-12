@@ -22,27 +22,23 @@ const Header = () => {
   return (
     <header>
       <div className="flex items-center justify-between py-4">
-        <div className="text-primary">
-          <div className="flex items-center justify-between ">
-            {typeof siteMetadata.headerTitle === 'string' ? (
-              <Link
-                href="/"
-                aria-label={siteMetadata.headerTitle}
-                className="text-gray-900 dark:text-gray-100"
-              >
-                <div className="h-6 text-3xl font-semibold">{siteMetadata.headerTitle}</div>
-              </Link>
-            ) : (
-              <Link
-                href="/"
-                aria-label={siteMetadata.headerTitle}
-                className="text-gray-900 dark:text-gray-100"
-              >
-                siteMetadata.headerTitle
-              </Link>
-            )}
-          </div>
-        </div>
+        {typeof siteMetadata.headerTitle === 'string' ? (
+          <Link
+            href="/"
+            aria-label={siteMetadata.headerTitle}
+            className="text-gray-900 dark:text-gray-100"
+          >
+            <h1 className="h-full text-3xl font-semibold">{siteMetadata.headerTitle}</h1>
+          </Link>
+        ) : (
+          <Link
+            href="/"
+            aria-label={siteMetadata.headerTitle}
+            className="text-gray-900 dark:text-gray-100"
+          >
+            siteMetadata.headerTitle
+          </Link>
+        )}
         <div className="hidden sm:block">
           <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
             {headerNavLinks
@@ -51,14 +47,12 @@ const Header = () => {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className={`hidden font-medium text-gray-900 hover:underline dark:text-gray-100 sm:block ${
-                    pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
-                  }`}
+                  className={`hidden font-medium text-gray-900 hover:underline dark:text-gray-100 sm:block ${pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
+                    }`}
                 >
                   {link.title}
                 </Link>
               ))}
-            {/* <SearchButton /> */}
             <ThemeSwitch />
           </div>
         </div>
@@ -77,7 +71,6 @@ const Header = () => {
           </svg>
         </button>
       </div>
-      <div></div>
       <div className={`block sm:hidden ${navShow ? '' : 'hidden'}`}>
         <nav className="flex-col items-center justify-between">
           <hr />
@@ -87,9 +80,8 @@ const Header = () => {
                 <Link
                   href={link.href}
                   onClick={onToggleNav}
-                  className={`underline-offset-2 hover:underline ${
-                    pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
-                  }`}
+                  className={`underline-offset-2 hover:underline ${pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
+                    }`}
                 >
                   {link.title}
                 </Link>

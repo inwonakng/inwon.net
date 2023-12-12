@@ -8,12 +8,12 @@ export default function Projects() {
   return (
     <>
       <div className="w-full">
-        <div className="pb-2 pt-4">
+        <div className="pt-8 pb-2">
           <h1 className="text-2xl font-extrabold leading-9 text-gray-900 dark:text-gray-100">
             Projects
           </h1>
         </div>
-        <div className="container py-4">
+        <div className="container">
           <div className="m-4 flex flex-wrap">
             {projectsData.map((d) => (
               <Card
