@@ -154,7 +154,7 @@ export default function ListLayoutWithTags({
                 )
               })}
             </ul>
-            {pagination && pagination.totalPages > 1 && (
+            {pagination && pagination.totalPages > 1 && !searchValue && (
               <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
             )}
           </div>
@@ -176,7 +176,7 @@ export default function ListLayoutWithTags({
               <ul className="flex flex-wrap gap-x-2 gap-y-1">
                 {sortedTags.map((t) => {
                   return (
-                    <li key={t} className="border-primary-900 border-solid border-1 rounded bg-gray-300/30 py-1">
+                    <li key={t} className="border-primary-900 border-solid border-1 rounded bg-gray-300/y0 py-1">
                       {pathname.split('/tags/')[1] === slug(t) ? (
                         <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-500">
                           {`${t} (${tagCounts[t]})`}
