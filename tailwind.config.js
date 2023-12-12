@@ -118,7 +118,7 @@ module.exports = {
             },
           },
         },
-        dark: {
+        invert: {
           css: {
             color: theme('colors.gray.300'),
             a: {
