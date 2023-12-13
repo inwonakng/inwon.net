@@ -140,7 +140,7 @@ export default function ListLayoutWithTags({
                             {title}
                           </Link>
                         </h2>
-                        <ul className="flex flex-wrap gap-x-2">
+                        <ul className="flex flex-wrap gap-2">
                           {tags?.map((tag) =>
                             <li>
                               <Tag key={tag} text={tag} tagName={tag} />
@@ -185,7 +185,7 @@ export default function ListLayoutWithTags({
               <h3 className="items-center justify-center font-bold">Tags</h3>
             </div>
             <div className="px-6 py-4">
-              <ul className="flex flex-wrap gap-x-2 gap-y-2">
+              <ul className="flex flex-wrap gap-2">
                 {sortedTags.map((t) => {
                   return (
                     <li
