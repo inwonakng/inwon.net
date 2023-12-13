@@ -120,7 +120,7 @@ export default function ListLayoutWithTags({
             </svg>
           </div>
         </div>
-        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
           <div className="col-span-3">
             <ul>
               {displayPosts.map((post) => {
@@ -141,11 +141,11 @@ export default function ListLayoutWithTags({
                           </Link>
                         </h2>
                         <ul className="flex flex-wrap gap-2">
-                          {tags?.map((tag) =>
-                            <li>
-                              <Tag key={tag} text={tag} tagName={tag} />
+                          {tags?.map((tag) => (
+                            <li key={tag}>
+                              <Tag text={tag} tagName={tag} />
                             </li>
-                          )}
+                          ))}
                         </ul>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                           {summary}
@@ -190,7 +190,7 @@ export default function ListLayoutWithTags({
                   return (
                     <li
                       key={t}
-                      className="border-1 bg-gray-400/30 rounded border-solid border-primary-900"
+                      className="border-1 rounded border-solid border-primary-900 bg-gray-400/30"
                     >
                       {pathname.split('/tags/')[1] === slug(t) ? (
                         <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-500">

@@ -20,11 +20,11 @@ export default async function Page() {
         </div>
         <ul className="flex flex-wrap gap-x-2 gap-y-2 pt-8">
           {tagKeys.length === 0 && 'No tags found.'}
-          {sortedTags.map((t) =>
-            <li>
+          {sortedTags.map((t) => (
+            <li key={t}>
               <Tag tagName={t} text={`${t} (${tagCounts[t]})`} />
             </li>
-          )}
+          ))}
         </ul>
       </div>
     </>

@@ -1,11 +1,8 @@
 'use client'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
 import Link from './Link'
-import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
-import SearchButton from './SearchButton'
 
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
@@ -28,7 +25,7 @@ const Header = () => {
             aria-label={siteMetadata.headerTitle}
             className="text-gray-900 dark:text-gray-100"
           >
-            <h1 className="h-full text-3xl font-semibold">{siteMetadata.headerTitle}</h1>
+            <h1 className="h-full text-2xl font-semibold">{siteMetadata.headerTitle}</h1>
           </Link>
         ) : (
           <Link
@@ -47,8 +44,9 @@ const Header = () => {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className={`hidden font-medium text-gray-900 hover:underline dark:text-gray-100 sm:block ${pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
-                    }`}
+                  className={`hidden font-medium text-gray-900 hover:underline dark:text-gray-100 sm:block ${
+                    pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
+                  }`}
                 >
                   {link.title}
                 </Link>
@@ -80,8 +78,9 @@ const Header = () => {
                 <Link
                   href={link.href}
                   onClick={onToggleNav}
-                  className={`underline-offset-2 hover:underline ${pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
-                    }`}
+                  className={`underline-offset-2 hover:underline ${
+                    pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
+                  }`}
                 >
                   {link.title}
                 </Link>
