@@ -16,8 +16,15 @@ interface DesktopTocProps {
   toc: Toc
 }
 
+const offset = {
+  1: "",
+  2: "ml-4",
+  3: "ml-8",
+}
+
 export const DesktopToc = ({ toc }: DesktopTocProps) => {
   const [expanded, setExpanded] = useState(true)
+
   return (
     <>
       {toc.length > 0 && (
@@ -71,10 +78,10 @@ export const DesktopToc = ({ toc }: DesktopTocProps) => {
               `}
             >
               <h3 className="text-base font-bold">Table of contents</h3>
-              <ul className={`items-left m-0 flex flex-col justify-center p-0 text-sm`}>
+              <ul className={`flex flex-col text-sm`}>
                 {toc.map((item) => (
-                  <li key={item.url}>
-                    <Link href={item.url} className={`ml-${(item.depth - 1) * 4}`}>
+                  <li key={item.url} className={`${offset[item.depth]}`}>
+                    <Link href={item.url} >
                       {`• `}
                       {item.value}
                     </Link>
@@ -96,11 +103,11 @@ interface MobileTocProps {
 export const MobileToc = ({ toc }: MobileTocProps) => {
   return (
     <div className="flex flex-col items-center justify-center gap-y-2 divide-y divide-gray-200 py-4 dark:divide-gray-700">
-      <h3 className="font-bold">Table of contents</h3>
-      <ul className="pt-2">
+      <h3 className="font-bold text-base">Table of contents</h3>
+      <ul className={`pt-2 flex flex-col text-sm`}>
         {toc.map((item) => (
           <li key={item.url}>
-            <Link href={item.url} className={`ml-${(item.depth - 1) * 4}`}>
+            <Link href={item.url} className={`${offset[item.depth]}`}>
               {`• `}
               {item.value}
             </Link>
