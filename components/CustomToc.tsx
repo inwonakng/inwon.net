@@ -102,18 +102,23 @@ interface MobileTocProps {
 
 export const MobileToc = ({ toc }: MobileTocProps) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-y-2 divide-y divide-gray-200 py-4 dark:divide-gray-700">
-      <h3 className="font-bold text-base">Table of contents</h3>
-      <ul className={`pt-2 flex flex-col text-sm`}>
-        {toc.map((item) => (
-          <li key={item.url}>
-            <Link href={item.url} className={`${offset[item.depth]}`}>
-              {`• `}
-              {item.value}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      {
+        toc.length > 0 &&
+        <div className="flex flex-col items-center justify-center gap-y-2 divide-y divide-gray-200 py-4 dark:divide-gray-700">
+          <h3 className="font-bold text-base">Table of contents</h3>
+          <ul className={`pt-2 flex flex-col text-sm`}>
+            {toc.map((item) => (
+              <li key={item.url}>
+                <Link href={item.url} className={`${offset[item.depth]}`}>
+                  {`• `}
+                  {item.value}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      }
+    </>
   )
 }
