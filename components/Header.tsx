@@ -93,7 +93,6 @@ const Header = () => {
         </nav>
         <hr />
       </div>
-      {/* <MobileNav /> */}
     </header>
   )
 }

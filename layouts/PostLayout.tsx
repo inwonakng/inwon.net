@@ -1,14 +1,15 @@
-import { ReactNode } from 'react'
-import { CoreContent } from 'pliny/utils/contentlayer'
-import type { Blog, Authors } from 'contentlayer/generated'
+'use client'
+
 import Comments from '@/components/Comments'
+import { DesktopToc, MobileToc, Toc } from '@/components/CustomToc'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
-import SectionContainer from '@/components/SectionContainer'
-import Image from '@/components/Image'
+import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import type { Authors, Blog } from 'contentlayer/generated'
+import { CoreContent } from 'pliny/utils/contentlayer'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -26,15 +27,39 @@ interface LayoutProps {
   authorDetails: CoreContent<Authors>[]
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
+  toc: Toc
   children: ReactNode
 }
 
-export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
+export default function PostLayout({ content, authorDetails, next, prev, children, toc }: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
 
+  const postBodyRef = useRef(null)
+
+  const [isPostVisible, setIsPostVisible] = useState(false);
+  // const elementRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      // The callback will return an array of entries, even if you are observing a single item
+      const entry = entries[0];
+      setIsPostVisible(entry.isIntersecting);
+    });
+
+    if (postBodyRef.current) {
+      observer.observe(postBodyRef.current);
+    }
+
+    return () => {
+      if (postBodyRef.current) {
+        observer.unobserve(postBodyRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <SectionContainer>
+    <div className={`mx-auto w-full px-4 sm:w-4/5 sm:px-0`}>
       <ScrollTopAndComment />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
@@ -76,7 +101,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                       <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                         Tags
                       </h2>
-                      <ul className="flex flex-wrap justify-center space-x-2">
+                      <ul className="flex flex-wrap justify-center gap-x-2 gap-y-3">
                         {tags.map((tag) => (
                           <li key={tag}>
                             <Tag tagName={tag} text={tag} />
@@ -86,28 +111,23 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     </div>
                   )}
                   {(next || prev) && (
-                    // <div className="flex justify-between items-center py-4 flex-col space-y-2 md:flex-row md:space-y-0">
-                    <div className="grid gap-2 md:grid-cols-2">
-                      {prev && prev.path && (
-                        <Link href={`/${prev.path}`}>
-                          <div className="border-1 rounded-md border-solid border-primary-400 bg-gray-400/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                            <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-100">
-                              &larr; Previous Article
-                            </h2>
-                            {prev.title}
-                          </div>
+                    <div className="grid gap-2 md:grid-cols-2 items-center items-stretch justify-center">
+                      {prev && prev.path ? (
+                        <Link href={`/${prev.path}`} className="border-1 rounded-md border-solid border-primary-400 bg-gray-400/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                          <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-100">
+                            &larr; Previous Article
+                          </h2>
+                          {prev.title}
                         </Link>
-                      )}
-                      {next && next.path && (
-                        <Link href={`/${next.path}`}>
-                          <div className="border-1 rounded-md border-solid border-primary-400 bg-gray-400/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                            <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-100">
-                              Next Article &rarr;
-                            </h2>
-                            {next.title}
-                          </div>
+                      ) : <div></div>}
+                      {next && next.path ? (
+                        <Link href={`/${next.path}`} className="border-1 rounded-md border-solid border-primary-400 bg-gray-400/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                          <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-100">
+                            Next Article &rarr;
+                          </h2>
+                          {next.title}
                         </Link>
-                      )}
+                      ) : <div></div>}
                     </div>
                   )}
                 </div>
@@ -123,23 +143,36 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </div>
             </div>
           </header>
-          <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-            <div className="prose max-w-none break-words py-4 dark:prose-invert">{children}</div>
-            <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
-              <Link href={discussUrl(path)} rel="nofollow">
-                Discuss on Twitter
-              </Link>
-              {` • `}
-              <Link href={editUrl(filePath)}>View on GitHub</Link>
-            </div>
-            {siteMetadata.comments && (
-              <div className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300" id="comment">
-                <Comments slug={slug} />
+          <div>
+            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
+              <div className={`block lg:hidden`}>
+                <MobileToc toc={toc} />
               </div>
-            )}
+              <div
+                className="col-span-4 prose max-w-none break-words py-4 dark:prose-invert"
+                ref={postBodyRef}
+              >
+                {children}
+              </div>
+              <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
+                <Link href={discussUrl(path)} rel="nofollow">
+                  Discuss on Twitter
+                </Link>
+                {` • `}
+                <Link href={editUrl(filePath)}>View on GitHub</Link>
+              </div>
+              {siteMetadata.comments && (
+                <div className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300" id="comment">
+                  <Comments slug={slug} />
+                </div>
+              )}
+            </div>
+            <div className={`hidden lg:block`}>
+              <DesktopToc toc={toc} />
+            </div>
           </div>
         </div>
       </article>
-    </SectionContainer>
+    </div>
   )
 }
