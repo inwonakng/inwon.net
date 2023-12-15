@@ -1,5 +1,3 @@
-'use client'
-
 import Comments from '@/components/Comments'
 import { DesktopToc, MobileToc, Toc } from '@/components/CustomToc'
 import Link from '@/components/Link'
@@ -9,7 +7,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import type { Authors, Blog } from 'contentlayer/generated'
 import { CoreContent } from 'pliny/utils/contentlayer'
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { ReactNode } from 'react'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -31,32 +29,16 @@ interface LayoutProps {
   children: ReactNode
 }
 
-export default function PostLayout({ content, authorDetails, next, prev, children, toc }: LayoutProps) {
+export default function PostLayout({
+  content,
+  authorDetails,
+  next,
+  prev,
+  children,
+  toc,
+}: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
-
-  const postBodyRef = useRef(null)
-
-  const [isPostVisible, setIsPostVisible] = useState(false);
-  // const elementRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      // The callback will return an array of entries, even if you are observing a single item
-      const entry = entries[0];
-      setIsPostVisible(entry.isIntersecting);
-    });
-
-    if (postBodyRef.current) {
-      observer.observe(postBodyRef.current);
-    }
-
-    return () => {
-      if (postBodyRef.current) {
-        observer.unobserve(postBodyRef.current);
-      }
-    };
-  }, []);
 
   return (
     <div className={`mx-auto w-full px-4 sm:w-4/5 sm:px-0`}>
@@ -111,23 +93,33 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     </div>
                   )}
                   {(next || prev) && (
-                    <div className="grid gap-2 md:grid-cols-2 items-center items-stretch justify-center">
+                    <div className="grid items-center items-stretch justify-center gap-2 md:grid-cols-2">
                       {prev && prev.path ? (
-                        <Link href={`/${prev.path}`} className="border-1 rounded-md border-solid border-primary-400 bg-gray-400/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                        <Link
+                          href={`/${prev.path}`}
+                          className="border-1 rounded-md border-solid border-primary-400 bg-gray-400/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        >
                           <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-100">
                             &larr; Previous Article
                           </h2>
                           {prev.title}
                         </Link>
-                      ) : <div></div>}
+                      ) : (
+                        <div></div>
+                      )}
                       {next && next.path ? (
-                        <Link href={`/${next.path}`} className="border-1 rounded-md border-solid border-primary-400 bg-gray-400/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                        <Link
+                          href={`/${next.path}`}
+                          className="border-1 rounded-md border-solid border-primary-400 bg-gray-400/30 px-4 py-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        >
                           <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-100">
                             Next Article &rarr;
                           </h2>
                           {next.title}
                         </Link>
-                      ) : <div></div>}
+                      ) : (
+                        <div></div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -148,10 +140,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <div className={`block lg:hidden`}>
                 <MobileToc toc={toc} />
               </div>
-              <div
-                className="col-span-4 prose max-w-none break-words py-4 dark:prose-invert"
-                ref={postBodyRef}
-              >
+              <div className="prose col-span-4 max-w-none break-words py-4 dark:prose-invert">
                 {children}
               </div>
               <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
@@ -162,7 +151,10 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 <Link href={editUrl(filePath)}>View on GitHub</Link>
               </div>
               {siteMetadata.comments && (
-                <div className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300" id="comment">
+                <div
+                  className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
+                  id="comment"
+                >
                   <Comments slug={slug} />
                 </div>
               )}

@@ -6,10 +6,7 @@ import Image from './Image'
 import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
 
-const Sample = () => 
-  <div className="border-solid border-4 border-primary-900">
-    Hello World!
-  </div>
+const Sample = () => <div className="border-4 border-solid border-primary-900">Hello World!</div>
 
 export const components: MDXComponents = {
   Image,
