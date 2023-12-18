@@ -29,8 +29,8 @@ export const DesktopToc = ({ toc }: DesktopTocProps) => {
     <>
       {toc.length > 0 && (
         <div
-          className={`fixed bottom-1/2 right-1 
-          top-1/2 flex h-[40%] max-w-[20%] -translate-y-1/2 
+          className={`fixed bottom-2/3 top-1/3 right-1 
+          flex h-[40%] max-w-[20%] -translate-y-1/2 
           transform items-center justify-center
           `}
         >
