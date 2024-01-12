@@ -1,6 +1,6 @@
 ---
 title: Tips for using remote computing resources
-date: '2023-7-08'
+date: 2023-7-08
 tags: 
   - ssh
   - remote-computing
@@ -19,16 +19,23 @@ Below are some tips I found useful for using SSH.
 
 SSH keys can be used to access remote machines or repositories without typing in the password every time (In fact, github has phased out passwords at this point).
 Github has a [good tutorial on this](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) as well.
+The ssh keys is unique to your machine and can be used to enter other machines that you are authorized to.
+
+### Generating your key
 To generate a key for your machine, you can run `ssh-keygen`.
 You will be asked to choose a directory and a passphrase for the key.
 Pressing enter will just use the default settings for everything.
 
+### Adding your key to github
 The program will output your public key in its output once you finish the generation process.
-To add it to your github account, you can go do you settings (in the main page, press your account's picture and press settings), and find the menu for SSH keys under the 'Access' section.
+To add it to your github account, you can go do you settings (in the main page, press your account's picture and press settings),
+and find the menu for SSH keys under the 'Access' section.
 You can paste the value of your ssh key by creating a new item in that menu and give it a descriptive name for your machine.
 You should now be able to use all the repositories that your account has access to on the new machine without having to do any more authentication.
-If you need to check your public key later, you can use the `cat` command to display it in the terminal, e.g. `cat ~/.ssh/id_rsa.pub` (this is if you followed all the default settings in the keygen process).
+If you need to check your public key later, you can use the `cat` command to display it in the terminal,
+e.g. `cat ~/.ssh/id_rsa.pub` (this is if you followed all the default settings in the keygen process).
 
+### Adding your key to remote machines 
 Now that you have the key, you can also register it in your remote servers to access it without typing in the password every time.
 You can do this with the `ssh-copy-id` command. Simply run `ssh-copy-id {USERNAME}@{HOSTNAME}` after replacing the username and hostname values, and your ssh key will be registered to that machine. No more password typing!
 
