@@ -141,3 +141,72 @@ return {
   end,
 }
 ```
+
+## Snippets
+
+Custom snippets is one of the power powerful tools you can leverage when writing your latex with vim and vimtex.
+LuaSnip is the plugin that manages all types of snippets
+
+`~/config/nvim/lua/plugins/luasnip.lua`
+```lua
+return {
+  "L3MON4D3/LuaSnip",
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+  },
+  opts = {
+    history = true,
+    delete_check_events = "TextChanged",
+  },
+  config = function()
+    local luasnip_loader = require("luasnip.loaders.from_vscode")
+    luasnip_loader.lazy_load({ paths = { "./snippets" }})
+    luasnip_loader.lazy_load()
+  end,
+}
+```
+
+The config function here ensures that my custom snippets appear first,
+so that I can override default snippets for common stuff like `figure` or `table`.
+
+Note that I am using the relative path. 
+Since everything under `lua` is loaded by nvim, this ends up pointing to `~/config/nvim/snippets`.
+
+Inside that directory, you can create a snippets file that uses vscode style snippets.
+In order to do this, you need to have a `package.json` file at the root of the snippets directory.
+You can also use subdirectories to maintain snippets for different purposes.
+
+`~/config/nvim/snippets/package.json`
+```json
+{
+  "name": "custom-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "tex"
+        ],
+        "path": "./latex/tex-snippets.json"
+      }
+    ]
+  }
+}
+```
+Again, note the use of relative paths.
+The relative path here starts from the directory that `package.json` is placed in.
+
+`~/config/nvim/snippets/latex/tex-snippets.json`
+```json
+{
+  "Minipage": {
+    "prefix": "minipage",
+    "body": ["\\begin{minipage}[t]{$0\\textwidth}", "\\end{minipage}%"],
+    "description": "Add a table"
+  },
+  "Frame": {
+    "prefix": "frame",
+    "body": ["\\begin{frame}", "\t\\frametitle{$1}", "\\end{frame}", "$0"],
+    "description": "Add a beamer frame"
+  },
+}
+```
