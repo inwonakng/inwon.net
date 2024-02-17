@@ -1,0 +1,143 @@
+---
+title: How to setup vimtex for LazyVim
+date: 2024-02-16
+tags: 
+  - neovim
+  - vimtex
+  - latex
+draft: false
+summary: Using neovim and vimtex to compile latex locally.
+images: 
+---
+
+# What is Vimtex?
+[Vimtex](https://github.com/lervag/vimtex) is a vim plugin that provides support for writing latex in vim.
+It can also be used in neovim.
+
+I use the [LazyVim](https://www.lazyvim.org) distro to base my setups on.
+Below are the plugins I use for my latex compilation.
+
+## Latex Compiler
+
+I use `latexmk` to compile my documents.
+Below is my current working configuration of the global `.latexmkrc` file.
+I use `lualatex` because it is the most modern and has the best support for unicode and modern fonts.
+
+`.latexmkrc`
+```bash
+
+```bash
+$pdf_mode = 4; # sets lualatex to default engine.
+$dvi_mode = 0;
+$postscript_mode = 0;
+```
+
+## Vimtex
+
+`~/.config/nvim/lua/plugins/vimtex.lua`
+```lua
+return {
+  "lervag/vimtex",
+  lazy = false, -- lazy-loading will disable inverse search
+  config = function()
+    vim.api.nvim_create_autocmd({ "FileType" }, {
+      group = vim.api.nvim_create_augroup("lazyvim_vimtex_conceal", { clear = true }),
+      pattern = { "bib", "tex" },
+      callback = function()
+        vim.wo.conceallevel = 0
+      end,
+    })
+    vim.g.vimtex_mappings_disable = { ["n"] = { "K" } } -- disable `K` as it conflicts with LSP hover
+    vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
+
+    vim.g.vimtex_view_method = "skim" -- <== macos specific, you can use zathura or sumatra or something else.
+    vim.g.vimtex_view_skim_sync = 1
+    vim.g.vimtex_view_skim_activate = 1
+    vim.g.vimtex_view_skim_reading_bar = 1
+
+    vim.g.vimtex_compiler_latexmk = {
+      aux_dir = "./aux",
+      out_dir = "./out",
+    }
+
+  end,
+}
+```
+
+Using this configuration, you can use `\l` keystroke to bring up the vimtex menu.
+It supports real-time compilation, meaning that the pdf viewer is automatically updated.
+I have it set such that it uses `skim` for the pdf viewer, which is specific to OsX, but you can change it to something else.
+The auxiliary files and final outputs are saved under `aux` and `out` of relative to the `.tex` file. 
+
+
+## Indentation
+
+`~/.config/nvim/lua/plugins/conform.lua`
+```lua
+return {
+  "stevearc/conform.nvim",
+  optional = true,
+  opts = {
+    format = {
+      timeout_ms = 3000,
+      async = false, -- not recommended to change
+      quiet = false, -- not recommended to change
+    },
+    formatters_by_ft = {
+      ["python"] = { "black" },
+      ["sh"] = { "shfmt" },
+      ["tex"] = { "latexindent" }, -- <== this is the latex indenting
+      ["html"] = { "prettier" },
+      ["css"] = { "prettier" },
+      ["javascript"] = { "prettier" },
+      ["javascriptreact"] = { "prettier" },
+      ["typescript"] = { "prettier" },
+      ["typescriptreact"] = { "prettier" },
+      ["json"] = { "prettier" },
+      ["jsonc"] = { "prettier" },
+      ["yaml"] = { "prettier" },
+      ["markdown"] = { "prettier" },
+      ["markdown.mdx"] = { "prettier" },
+    },
+  },
+}
+```
+
+## Synatx Highlighting
+
+`~/.config/nvim/lua/plugins/treesitter.lua`
+```lua
+return {
+  "nvim-treesitter/nvim-treesitter",
+  opts = function(_, opts)
+    vim.treesitter.language.register("markdown", "mdx")
+    -- vim.list_extend(opts.highlight.disable, { "tsx" })
+    if type(opts.ensure_installed) == "table" then
+      vim.list_extend(opts.ensure_installed, {
+        "markdown",
+        "markdown_inline",
+        "bibtex",
+        "latex",
+        "ninja",
+        "python",
+        "rst",
+        "toml",
+        "typescript",
+        "tsx",
+        "json",
+        "json5",
+        "jsonc",
+      })
+    end
+    if type(opts.highlight.disable) == "table" then
+      vim.list_extend(opts.highlight.disable, { "latex", "bibtex" })
+    else
+      opts.highlight.disable = { "latex", "bibtex" }
+    end
+    opts.autotag = {
+      enable = true,
+      filetypes = { "ts", "tsx", "js", "jsx", "mdx", "html" },
+    }
+  end,
+}
+```
