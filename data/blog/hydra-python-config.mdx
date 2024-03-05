@@ -10,7 +10,7 @@ images:
 ---
 
 # What is Hydra?
-[`Hydra`](https://hydra.cc/docs/intro/) is a library built on top of `OmegaConf` that uses `.yaml` or (`.yml`) files to pass arguments into a python script.
+`Hydra` is a library built on top of `OmegaConf` that uses `.yaml` or (`.yml`) files to pass arguments into a python script.
 
 # Why should I use it?
 There are already nice libraries like `click` or `argparse` that can be used to pass arguments.
@@ -261,3 +261,6 @@ AnotherDataset:
 
 Notice that the `conf/main.yaml` now has a list of dictionaries that specify the **filename** of the configuration and each dataset configuration is now a nested dictionary where the top level key is an *identifier* (name).
 Using this stucture, you can now access these arbitrary configurations through `config.dataset.values()` or `config.dataset[DATASET_NAME]` if you know the name.
+
+# Useful links
+- [hydra docs](https://hydra.cc/docs/intro/)
