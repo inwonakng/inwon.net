@@ -1,0 +1,69 @@
+---
+title: Using macros in vim
+date: '2024-03-04'
+tags: 
+  - vim
+draft: false
+summary: Quick guide on how to use macros in vim
+images: 
+---
+
+# What are macros?
+A marco is a sequence of vim actions that you can record for re-using.
+
+# Why use macros?
+Consider the following case (this is extremely contrived but still):
+
+Let's say that you have a function like this.
+
+```python
+def a_function(
+    parameter_a: int,
+    param_b: float,
+    another_param_c: float,
+) -> None:
+  ...
+```
+
+Let's now say that you want to pack the arguments of `a_function` into a dictionary while keeping the names, like the following.
+
+```python
+{
+  "parameter_a": parameter_a,
+  "param_b": param_b,
+  "another_param_c": another_param_c,
+}
+```
+
+You can achieve this manually, but you will (hopefully) notice that you are using the same keystroke for every line (every parameter).
+This is a good example of where macros can come in handy.
+
+For each line, you can achieve the transformation by the following keystokes: `0vec""<ESC>Per=2bye$bvep`.
+
+## Breakdown
+- `0`: Go to begining of line.
+- `vec`: Visually select until end of this word and trigger `change` to enter input mode while copying the selected word.
+- `""<ESC>P`: Put two quotation marks, go to norma mode, and paste before the last quotation mark.
+- `er=`: Go to end of word and replace with =.
+- `2bye`: Go back 2 words and copy the word (stuff inside quotation marks).
+- `$b`: Go to the end of the line and back one word.
+- `vep`: Select until the end of the word and paste to overwrite.
+
+# Using macros in vim
+You can "record" macro by pressing `q` followed by a letter (a-z) and then the sequence of keystrokes you want to record.
+You can then replay the macro by pressing `@` followed by the letter you used to record the macro.
+
+For example, you can you can press `qh` to record a macro for `h` and execute your first line, then repeat them in the next line by pressing `@h`.
+
+
+# Using multi-line macros
+Cool, but you still have to repeat the macro for each line. 
+Surely there is a better way?
+
+You can achieve multi-line macros by selecting the target lines and using the following command (press `:` to start a command).
+```
+'<,'>norm @h
+```
+Where `norm` is short for `normal`.
+And the `'<,'>` is a range that specifies the visual selection.
+If you used visual selection, this part should already be populated, so you just need to type `norm @h` and press enter.
