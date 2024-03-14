@@ -118,28 +118,29 @@ One thing to note is to set dummy values for `OPENAI_API_KEY` and `OPENAI_API_BA
 More info on OpenAI API can be found [here](https://platform.openai.com/docs/introduction).
 
 ```python
-conf = {
-    # Name of the model, not useful for oobabooga
-    'model': MODEL_NAME,
-    # OpenAI key
-    # or the default "sk-111111111111111111111111111111111111111111111111" for oobabooga
-    'api_key': API_KEY
-
-}
 headers = {
     "Content-Type": "application/json;charset=UTF-8",
     "Authorization": f"Bearer {conf['api_key']}"
 }
 
 data = {
-    "messages": messages
-    "instruction_template": "Orca Mini" # This is what the llama2 70b 4bit model uses.
+    "messages": [
+        {
+            "role": "system", # system prompt
+            "content": "You are a helpful assistant." 
+        }, {
+            "role": "user",
+            "content": "Tell me a funny joke." 
+        }, {
+            "role": "assistant",
+            "content": "Why did the chicken cross the road? To get to the other side!" 
+        }, {
+            "role": "user",
+            "content": "That was not very funny. Tell me another one." 
+        }
+    ],
+    "instruction_template": "Orca Mini"
 }
-
-if model in ['gpt-4', 'gpt-3.5-turbo']:
-    data['model'] = model
-else:
-    data.update(CODELLAMA_ARGS)
 
 response = requests.post(
     url = conf['url'],
@@ -151,6 +152,8 @@ if response.status_code == 200:
     model_output = response.json()['choices'][0]['message']['content']
 else:
     raise Exception(f"Response returned with code {response.status_code}, message: {response.content.decode()}")
+
+print(model_output)
 ```
 
 # Training & Saving LoRA
