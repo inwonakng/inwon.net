@@ -217,12 +217,23 @@ In this case, the `hydra.utils.instantitate` call returns a partial constructor,
 # Useful tips
 
 ## Overriding configuration
+
+### By file
 You can override the main configuration by providing arguments to the method.
 e.g. 
 ```bash
 python main.py dataset=another_dataset model=another_model
 ```
-Assuming you have `datasets/another_dataset.yaml` and `models/another_model.yaml` in your `conf` directory.
+Assuming you have `dataset/another_dataset.yaml` and `model/another_model.yaml` in your `conf` directory.
+
+
+### By parameter
+If you want to change one parameter in a configuration file, you can use `.` instead of `/` to specify the exact parameter.
+e.g. 
+```bash
+python main.py dataset.batch_size=512
+```
+Assuming you have a field called `batch_size` in `dataset.yaml`.
 
 ## Using arbitrary number of configurations
 You can also use an arbitary number of configurations by modifying the structure a bit. 
