@@ -54,7 +54,7 @@ Or, if you are always using the same port and don't want to bother typing out th
 ```ssh-config:~/.ssh/config
 Host {SOME_UNIQUE_NAME}
     HostName {REMOTE_ADDRESS}
-    LocalForward 127.0.0.1:{LOCAL_PORT_YOU_WANT} {REMOTE_ADDRESS}:{REMOTE_PORT_TO_FORWARD}
+    LocalForward {LOCAL_PORT_YOU_WANT} 127.0.0.1:{REMOTE_PORT_TO_FORWARD}
     User {YOUR_USERNAME}
 ```
 
