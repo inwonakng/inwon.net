@@ -5,8 +5,8 @@ import PageTitle from '@/components/PageTitle'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import type { Authors, Blog } from 'contentlayer/generated'
-import { CoreContent } from 'pliny/utils/contentlayer'
+import type { Authors, Blog, Reading } from 'contentlayer/generated'
+import { CoreContent } from '@/utils/contentlayer'
 import { ReactNode } from 'react'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
@@ -21,7 +21,8 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
 }
 
 interface LayoutProps {
-  content: CoreContent<Blog>
+  content: CoreContent<Blog | Reading>
+  postGroup: string
   authorDetails: CoreContent<Authors>[]
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
@@ -31,6 +32,7 @@ interface LayoutProps {
 
 export default function PostLayout({
   content,
+  postGroup,
   authorDetails,
   next,
   prev,
@@ -86,7 +88,7 @@ export default function PostLayout({
                       <ul className="flex flex-wrap justify-center gap-x-2 gap-y-3">
                         {tags.map((tag) => (
                           <li key={tag}>
-                            <Tag tagName={tag} text={tag} />
+                            <Tag tagName={tag} tagGroup={postGroup} text={tag} />
                           </li>
                         ))}
                       </ul>

@@ -9,10 +9,10 @@ tags:
 draft: false
 summary: Quick tutorial on how to use tensorboard to do initial hyperparameter tuning with pytorch lightning.
 images:
-  - /static/images/torch-lightning-hyperparameter-tuning/tensorboard.png
-  - /static/images/torch-lightning-hyperparameter-tuning/hparams.png
-  - /static/images/torch-lightning-hyperparameter-tuning/coordinates.png
-  - /static/images/torch-lightning-hyperparameter-tuning/scatter.png
+  - /static/images/blog/torch-lightning-hyperparameter-tuning/tensorboard.png
+  - /static/images/blog/torch-lightning-hyperparameter-tuning/hparams.png
+  - /static/images/blog/torch-lightning-hyperparameter-tuning/coordinates.png
+  - /static/images/blog/torch-lightning-hyperparameter-tuning/scatter.png
 ---
 
 # What is Pytorch Lightning?
@@ -119,11 +119,11 @@ This is where you can compare the results of models with varying hyperparameters
 
 Here are some screenshots of the cool things you can find on that page:
 
-![](/static/images/torch-lightning-hyperparameter-tuning/hparams.png)
+![](/static/images/blog/torch-lightning-hyperparameter-tuning/hparams.png)
 
-![](/static/images/torch-lightning-hyperparameter-tuning/scatter.png)
+![](/static/images/blog/torch-lightning-hyperparameter-tuning/scatter.png)
 
-![](/static/images/torch-lightning-hyperparameter-tuning/coordinates.png)
+![](/static/images/blog/torch-lightning-hyperparameter-tuning/coordinates.png)
 
 These plots are showing the performance of different hyperparameters with respect to the metric beind used to evaluate them (in my case, validation loss).
 Here is how you can achieve this in a few simple steps using the Lightning framework.

@@ -1,4 +1,6 @@
-import { ReactNode } from 'react'
+'use client'
+
+import { ReactNode, useEffect, useState } from 'react'
 import type { Authors } from 'contentlayer/generated'
 import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
@@ -9,7 +11,29 @@ interface Props {
 }
 
 export default function AuthorLayout({ children, content }: Props) {
-  const { name, avatar, occupation, company, email, twitter, linkedin, github } = content
+  const { name, avatar, easterEggAvatar, occupation, company, email, twitter, linkedin, github } =
+    content
+
+  const [firstKeyTime, setFirstKeyTime] = useState<number | null>(null)
+  const [easterEggActivated, setEasterEggActivated] = useState<boolean | null>(false)
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === '<') {
+        setFirstKeyTime(Date.now())
+      } else if (event.key === '3' && firstKeyTime) {
+        const currentTime = Date.now()
+        if (currentTime - firstKeyTime <= 300) {
+          setFirstKeyTime(null)
+          setEasterEggActivated(!easterEggActivated)
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [firstKeyTime])
 
   return (
     <>
@@ -17,7 +41,7 @@ export default function AuthorLayout({ children, content }: Props) {
         <div className="m-auto flex flex-col items-center pt-4">
           {avatar && (
             <Image
-              src={avatar}
+              src={easterEggActivated && easterEggAvatar ? easterEggAvatar : avatar}
               alt="avatar"
               width={192}
               height={192}

@@ -1,7 +1,7 @@
 ---
 title: How to do search and replace on nvim
 date: '2024-03-14'
-tags: 
+tags:
   - neovim
 draft: false
 summary: A set of commands to do search and replace for both single and multiple files on nvim
@@ -15,6 +15,7 @@ images:
 ---
 
 # Single file case
+
 `:s` is the command to do search and replace on nvim.
 The basic syntax is `:s/old/new/g` where `old` is the string to be replaced and `new` is the string to replace with.
 The `g` at the end is to replace all occurrences of `old` with `new`.
@@ -30,32 +31,33 @@ Then type `:s/old/new/g` and press enter.
 You can use regex for your matches, and may also specify case insensitivity by prepending `\C` (case sensitive) or `\c` (case insensitive) to the search term, depending on your default setting.
 
 ## Using case sensitivity
+
 If you find that you need to jump around your command, you can press `ctrl+f` to open the command in a buffer.
 This allows you to enter normal mode and also check your previous commands.
 
 # Multi file case
+
 You can do multi-file search and replace by using the popular [`spectre`](https://github.com/nvim-pack/nvim-spectre) plugin for nvim.
 But if you already of a fuzzy file finder such as [`fzf-lua`](https://github.com/ibhagwan/fzf-lua) or [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim), you can achieve the same without needing an extra plugin.
 In fact, this also allows you to select which files to perform the mass search-and-replace on with more ease.
 I use fzf-lua, so I will cover this case. But telescope will be very similar.
 
 1. First enter the `live_grep` mode by pressing your binding or typing in `:lua require("fzf-lua").live_grep()`.
-![](/static/images/nvim-search-and-replace-fzf/step1.png)
+   ![](/static/blog/images/nvim-search-and-replace-fzf/step1.png)
 
 2. Type in your search term.
-![](/static/images/nvim-search-and-replace-fzf/step2.png)
+   ![](/static/images/nvim-search-and-replace-fzf/step2.png)
 
 3. Select the files you want to do the search and replace on by pressing `tab` on each file.
-![](/static/images/nvim-search-and-replace-fzf/step3.png)
+   ![](/static/images/nvim-search-and-replace-fzf/step3.png)
 
 4. Press enter to open the selected files in the quickfix window.
-![](/static/images/nvim-search-and-replace-fzf/step4.png)
+   ![](/static/images/nvim-search-and-replace-fzf/step4.png)
 
 5. Type `:cdo` and then the same syntax as the single file case (e.g. `%s/old/new/g`).
-![](/static/images/nvim-search-and-replace-fzf/step5.png)
-![](/static/images/nvim-search-and-replace-fzf/step5-2.png)
+   ![](/static/images/nvim-search-and-replace-fzf/step5.png)
+   ![](/static/images/nvim-search-and-replace-fzf/step5-2.png)
 
 6. If you want to save the changes, type `:wa` (write all open buffer) or `:cdo w` (write all in quickfix) to write all the files.
 
-  - If you want to revert the changes, you can also type `:cdo u` to undo the changes.
-
+- If you want to revert the changes, you can also type `:cdo u` to undo the changes.

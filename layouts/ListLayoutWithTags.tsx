@@ -4,9 +4,9 @@
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { slug } from 'github-slugger'
-import { formatDate } from 'pliny/utils/formatDate'
-import { CoreContent } from 'pliny/utils/contentlayer'
-import type { Blog } from 'contentlayer/generated'
+import { formatDate } from '@/utils/formatDate'
+import { CoreContent } from '@/utils/contentlayer'
+import type { Blog, Reading } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
@@ -17,9 +17,10 @@ interface PaginationProps {
   currentPage: number
 }
 interface ListLayoutProps {
-  posts: CoreContent<Blog>[]
+  posts: CoreContent<Blog | Reading>[]
+  postGroup: string
   title: string
-  initialDisplayPosts?: CoreContent<Blog>[]
+  initialDisplayPosts?: CoreContent<Blog | Reading>[]
   pagination?: PaginationProps
 }
 
@@ -65,6 +66,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
 
 export default function ListLayoutWithTags({
   posts,
+  postGroup,
   title,
   initialDisplayPosts = [],
   pagination,
@@ -143,7 +145,7 @@ export default function ListLayoutWithTags({
                         <ul className="flex flex-wrap gap-2">
                           {tags?.map((tag) => (
                             <li key={tag}>
-                              <Tag text={tag} tagName={tag} />
+                              <Tag text={tag} tagGroup={postGroup} tagName={tag} />
                             </li>
                           ))}
                         </ul>
@@ -198,7 +200,7 @@ export default function ListLayoutWithTags({
                         </h3>
                       ) : (
                         <Link
-                          href={`/tags/${slug(t)}`}
+                          href={`/tags/${slug(postGroup)}/${slug(t)}`}
                           className="px-3 py-2 text-sm font-medium uppercase text-gray-500 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-500"
                           aria-label={`View posts tagged ${t}`}
                         >

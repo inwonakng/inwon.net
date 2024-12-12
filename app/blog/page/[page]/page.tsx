@@ -1,5 +1,5 @@
 import ListLayout from '@/layouts/ListLayoutWithTags'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
+import { allCoreContent, sortPosts } from '@/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 
 const POSTS_PER_PAGE = 15
@@ -26,6 +26,7 @@ export default function Page({ params }: { params: { page: string } }) {
   return (
     <ListLayout
       posts={posts}
+      postGroup="blog"
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
       title="All Posts"

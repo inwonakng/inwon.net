@@ -6,10 +6,10 @@ tags:
 draft: false
 summary: Different options for making a nice progress bar in python scripts.
 images:
-  - /static/images/python-progress-bar/tqdm-terminal.png
-  - /static/images/python-progress-bar/tqdm-jupyter.png
-  - /static/images/python-progress-bar/rich-terminal.png
-  - /static/images/python-progress-bar/rich-jupyter.png
+  - /static/images/blog/python-progress-bar/tqdm-terminal.png
+  - /static/images/blog/python-progress-bar/tqdm-jupyter.png
+  - /static/images/blog/python-progress-bar/rich-terminal.png
+  - /static/images/blog/python-progress-bar/rich-jupyter.png
 ---
 
 Progress bars are a nice way to track progress of your python script.
@@ -41,9 +41,9 @@ Note that we are importing from `tqdm.auto`, instead of just `tqdm`.
 The `tqdm.auto` module returns a tqdm function that matches the environment automatically, so you don't have to worry about whether your code is being ran on a jupyter instance or the terminal.
 Below is what the output looks like on my terminal and vscode jupyter notebook.
 
-![](/static/images/python-progress-bar/tqdm-terminal.png)
+![](/static/images/blog/python-progress-bar/tqdm-terminal.png)
 
-![](/static/images/python-progress-bar/tqdm-jupyter.png)
+![](/static/images/blog/python-progress-bar/tqdm-jupyter.png)
 
 If your task is more complicated and you want to manually update the progress bar, you can also do something like the following using `tqdm`.
 
@@ -84,7 +84,7 @@ for i in tqdm(range(10), desc='doing something...'):
     do_something()
 ```
 
-![](/static/images/python-progress-bar/tqdm-print.png)
+![](/static/images/blog/python-progress-bar/tqdm-print.png)
 
 ## rich
 
@@ -104,9 +104,9 @@ for i in track(range(10), description='doing something...'):
 
 Here is what the outputs look like in the terminal and jupyter:
 
-![](/static/images/python-progress-bar/rich-terminal.png)
+![](/static/images/blog/python-progress-bar/rich-terminal.png)
 
-![](/static/images/python-progress-bar/rich-jupyter.png)
+![](/static/images/blog/python-progress-bar/rich-jupyter.png)
 
 Using rich, we can use print statements inside the tracked loop and the progress bar will not break.
 But if you try to nest your `track` calls, you will face an error that says `LiveError: Only one live display may be active at once`, unlike tqdm.
@@ -133,7 +133,7 @@ with Progress() as progress:
         progress.remove_task(task2)
 ```
 
-![](/static/images/python-progress-bar/rich-multi.png)
+![](/static/images/blog/python-progress-bar/rich-multi.png)
 
 With `Progress`, we can dynamically create and remove tasks from the rendering session, keeping the progress bar always at the bottom of the screen.
 Note that unlike tqdm, you always have to specify the update amount in the `.update` calls.

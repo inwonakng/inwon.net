@@ -1,9 +1,9 @@
 import 'css/tailwind.css'
-import 'pliny/search/algolia.css'
+import '@/components/search/algolia.css'
 
 import { Space_Grotesk } from 'next/font/google'
-import { Analytics, AnalyticsConfig } from 'pliny/analytics'
-import { SearchProvider, SearchConfig } from 'pliny/search'
+import { Analytics, AnalyticsConfig } from '@/components/analytics/index'
+import { SearchProvider, SearchConfig } from '@/components/search/index'
 import Header from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
 import Footer from '@/components/Footer'

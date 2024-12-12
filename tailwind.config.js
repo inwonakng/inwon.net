@@ -88,6 +88,20 @@ module.exports = {
               paddingTop: '2px',
               paddingBottom: '2px',
               borderRadius: '0.25rem',
+              lineHeight: 1.2,
+              whiteSpace: 'pre',
+            },
+            '.code-line': {
+              paddingLeft: '2rem',
+              counterIncrement: 'line-number',
+            },
+            '.code-line::before': {
+              content: 'counter(line-number)',
+              left: 0,
+              width: '2rem',
+              paddingRight: '0.5rem',
+              textAlign: 'right',
+              color: theme('colors.gray.500'), //appropriate color for dark mode if needed
             },
             'code::before': {
               content: 'none',
