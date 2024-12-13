@@ -110,7 +110,7 @@ export default function ListLayoutWithTags({
               href={`/${postGroup}`}
               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             >
-              {`Back to ${postGroup}/`}
+              {`Go to ${postGroup}/`}
             </Link>
           )}
         </div>
