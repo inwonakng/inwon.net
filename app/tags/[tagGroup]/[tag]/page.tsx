@@ -60,6 +60,6 @@ export default function TagPage({ params }: { params: { tag: string; tagGroup: s
       allPosts[tagGroup].filter((post) => post.tags && post.tags.map((t) => slug(t)).includes(tag))
     )
   )
-  const listTitle = `{tag} in /${tagGroup}/`
-  return <ListLayout posts={filteredPosts} postGroup={tagGroup} title={listTitle} />
+  const listTitle = `Results for "${tag}" in ${tagGroup}/`
+  return <ListLayout posts={filteredPosts} postGroup={tagGroup} title={listTitle} isFiltered />
 }

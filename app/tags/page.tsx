@@ -28,7 +28,7 @@ export default async function Page() {
           {blogTagKeys.length === 0 && 'No tags found.'}
           {blogSortedTags.map((t) => (
             <li key={t}>
-              <Tag tagName={t} tagGroup="blog" text={`${t} (${blogTagCounts[t]})`} />
+              <Tag tagName={t} tagGroup="blog" text={t} tagCount={blogTagCounts[t]} />
             </li>
           ))}
         </ul>
@@ -41,7 +41,7 @@ export default async function Page() {
           {readingTagKeys.length === 0 && 'No tags found.'}
           {readingSortedTags.map((t) => (
             <li key={t}>
-              <Tag tagName={t} tagGroup="reading" text={`${t} (${readingTagCounts[t]})`} />
+              <Tag tagName={t} tagGroup="reading" text={t} tagCount={readingTagCounts[t]} />
             </li>
           ))}
         </ul>

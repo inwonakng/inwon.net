@@ -19,13 +19,33 @@ export default function Footer() {
           <div>{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
         </div>
-        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
+        <div className="mb-2 text-sm text-gray-500 dark:text-gray-400">
           <Link
             href="https://github.com/inwonakng/homepage"
             className="text-gray-500 dark:text-gray-400"
           >
             Source Code
           </Link>
+        </div>
+        <div className="mb-8 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
+          <div>Subscribe to RSS:</div>
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            [
+            <Link
+              href="https://inwon.net/blog/feed.xml"
+              className="text-gray-500 dark:text-gray-400"
+            >
+              Blog
+            </Link>
+            |
+            <Link
+              href="https://inwon.net/reading/feed.xml"
+              className="text-gray-500 dark:text-gray-400"
+            >
+              Reading
+            </Link>
+            ]
+          </div>
         </div>
       </div>
     </footer>
