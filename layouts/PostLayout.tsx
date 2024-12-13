@@ -5,7 +5,7 @@ import PageTitle from '@/components/PageTitle'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import type { Authors, Blog, Reading } from 'contentlayer/generated'
+import type { Author, Blog, Reading } from 'contentlayer/generated'
 import { CoreContent } from '@/utils/contentlayer'
 import { ReactNode } from 'react'
 
@@ -23,7 +23,7 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
 interface LayoutProps {
   content: CoreContent<Blog | Reading>
   postGroup: string
-  authorDetails: CoreContent<Authors>[]
+  authorDetails: CoreContent<Author>[]
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
   toc: Toc
@@ -63,7 +63,7 @@ export default function PostLayout({
               </div>
               <div>
                 <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2">
-                  <dt className="sr-only">Authors</dt>
+                  <dt className="sr-only">Author</dt>
                   <dd>
                     <ul className="flex-col justify-center xl:pt-2">
                       {authorDetails.map((author) => (
@@ -85,7 +85,7 @@ export default function PostLayout({
                         Tags
                       </h2>
                       <ul className="flex flex-wrap justify-center gap-x-2 gap-y-3">
-                        {tags.map((tag) => (
+                        {tags.sort().map((tag) => (
                           <li key={tag}>
                             <Tag tagName={tag} tagGroup={postGroup} text={tag} />
                           </li>

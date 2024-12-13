@@ -1,0 +1,60 @@
+---
+title: 'TabLLM: Few-shot Classification of Tabular Data with Large Language Models'
+date: 2024-07-16
+tags:
+  - language-model
+  - tabular-data
+  - text-serialization
+draft: false
+summary: Summary of the TabLLM paper
+images:
+---
+
+# Summary
+
+Use a decoder-only language model to do classification on tabular data by _serializing_ the data to text.
+
+# Contributions
+
+- A comparison study of different serialization techniques for tabular data.
+
+# Approach
+
+## Target Task
+
+Classification
+
+## Experiment Scale
+
+Datasets with at most 50,000 rows and 30 columns.
+12 datasets.
+
+## Input Transformation
+
+_text_: convert everything into text -- i.e. `the *column* is *value* ...`
+_list_: a text "list" of values -- i.e.
+
+    ```
+    - *column1*: *value1*
+    - *column2*: *value2*
+    ...
+    ```
+
+Row to text:
+
+- Only values
+- Mismatching column name/values
+- Matching column name/values
+- First 10 features
+
+# Findings
+
+- (Sometimes) Outperforms TabPFN and XGB on a few-data regime.
+
+## Text serialization comparison
+
+Compared _text_ vs. _list_ serialization.
+
+- _text_ is better in general.
+- However, there was a dataset that _list_ was better in.
+

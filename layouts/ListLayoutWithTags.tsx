@@ -159,7 +159,7 @@ export default function ListLayoutWithTags({
                         </Link>
                       </h2>
                       <ul className="flex flex-wrap gap-2">
-                        {tags?.map((tag) => (
+                        {tags?.sort().map((tag) => (
                           <li key={tag}>
                             <Tag
                               text={tag}

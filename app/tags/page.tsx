@@ -32,6 +32,8 @@ export default async function Page() {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="mt-2 flex w-full flex-col items-center justify-center space-x-6 divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-x-2 pb-4 pt-8 md:space-y-5">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
             Reading Tags

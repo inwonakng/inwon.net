@@ -1,0 +1,45 @@
+---
+title: 'HyTrel: Hypergraph-enhanced Tabular Data Representation Learning'
+date: '2024-09-12'
+tags:
+  - tabular-data
+  - deep-learning
+  - graph-based
+  - model-architecture
+  - table-representation
+draft: false
+summary: Summary of the HyTrel paper
+images:
+  - /static/images/reading/hytrel/hypergraph.png
+  - /static/images/reading/hytrel/framework.png
+---
+
+# Contributions
+
+- Proposed HyTrel, a _hypergraph_ representation of tables and an attention-based message-passing model that consumes it.
+- Shows better downstream performance against TaBERT.
+- Proves permutation (row or column) invariance.
+
+# Approach
+
+![](/static/images/reading/hytrel/hypergraph.png)
+
+Example of a hypergraph representation of a table.
+
+![](/static/images/reading/hytrel/framework.png)
+
+HyTrel model architecture.
+
+- Express table $T$ as $G = \{V, E\}$, where $E = E_{col} \cup E_{table} \cup E_{row}$ and $V = \{v_{i,j}\}$ is the set of cells in column $i$ and row $j$.
+  - $E_{col,i}$ connects all cells $v_{i,\cdot}$.
+  - $E_{row,i}$ connects all cells $v_{\cdot,i}$.
+  - $E_{table}$ connects all cells in $V$.
+- The model composed of stacks of _HyperAtt_, which is a modified version of _deep set mechanism_ that are supposed to be permutation invariatne.
+  - It looks like the same thing as self-attention, but the authors say that is _not_ permutation invariant. Not sure why they claim this.
+  - First message pass from $V$ to $E$, and then from $E$ to $V$.
+  - Pre-trained with a combination of contrastive (edge masking) loss and corruption detection (binary classification)
+
+# Findings
+
+- HyTrel is better than older models.
+- Much faster convergence on pre-training.

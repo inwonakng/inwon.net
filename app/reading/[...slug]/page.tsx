@@ -5,7 +5,7 @@ import PageTitle from '@/components/PageTitle'
 import { MDXLayoutRenderer, components } from '@/components/MDXComponents'
 import { sortPosts, coreContent, allCoreContent } from '@/utils/contentlayer'
 import { allReadings, allAuthors } from 'contentlayer/generated'
-import type { Authors, Reading } from 'contentlayer/generated'
+import type { Author, Reading } from 'contentlayer/generated'
 import PostSimple from '@/layouts/PostSimple'
 import PostLayout from '@/layouts/PostLayout'
 import PostBanner from '@/layouts/PostBanner'
@@ -30,7 +30,7 @@ export async function generateMetadata({
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
-    return coreContent(authorResults as Authors)
+    return coreContent(authorResults as Author)
   })
   if (!post) {
     return
@@ -94,7 +94,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
-    return coreContent(authorResults as Authors)
+    return coreContent(authorResults as Author)
   })
   const mainContent = coreContent(post)
   const jsonLd = post.structuredData
