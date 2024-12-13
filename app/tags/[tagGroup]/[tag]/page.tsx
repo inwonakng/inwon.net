@@ -1,9 +1,8 @@
 import { slug } from 'github-slugger'
-import { allCoreContent, sortPosts } from '@/utils/contentlayer'
+import { CoreContent, allCoreContent, sortPosts } from '@/utils/contentlayer'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayoutWithTags'
-import { allBlogs, allReadings } from 'contentlayer/generated'
-import tagData from 'app/tag-data.json'
+import { Blog, Reading, allBlogs, allReadings } from 'contentlayer/generated'
 import blogTagData from 'app/blog-tag-data.json'
 import readingTagData from 'app/reading-tag-data.json'
 import { genPageMetadata } from 'app/seo'
@@ -55,7 +54,8 @@ export default function TagPage({ params }: { params: { tag: string; tagGroup: s
     .map((t) => t.toUpperCase())
     .join('-')
   // tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
-  const filteredPosts = allCoreContent(
+
+  const filteredPosts: CoreContent<Blog | Reading>[] = allCoreContent(
     sortPosts(
       allPosts[tagGroup].filter((post) => post.tags && post.tags.map((t) => slug(t)).includes(tag))
     )

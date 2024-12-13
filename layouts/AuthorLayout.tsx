@@ -33,7 +33,7 @@ export default function AuthorLayout({ children, content }: Props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [firstKeyTime])
+  }, [firstKeyTime, easterEggActivated])
 
   return (
     <>

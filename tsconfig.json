@@ -7,7 +7,7 @@
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": false,
+    "noEmit": true,
     "composite": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -29,8 +29,7 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true,
-    "outDir": "./dist"
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
