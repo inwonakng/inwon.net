@@ -26,10 +26,11 @@ export default function Page({ params }: { params: { page: string } }) {
   return (
     <ListLayout
       posts={posts}
+      title="All Posts"
+      description="Very informal summaries of papers I've read"
       postGroup="reading"
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="All Posts"
     />
   )
 }

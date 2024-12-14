@@ -23,9 +23,10 @@ interface PaginationProps {
   currentPage: number
 }
 interface ListLayoutProps {
+  title: string
+  description?: string
   posts: CoreContent<Blog | Reading>[]
   postGroup: string
-  title: string
   initialDisplayPosts?: CoreContent<Blog | Reading>[]
   pagination?: PaginationProps
   isFiltered?: boolean
@@ -72,9 +73,10 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
 }
 
 export default function ListLayoutWithTags({
+  title,
+  description,
   posts,
   postGroup,
-  title,
   initialDisplayPosts = [],
   pagination,
   isFiltered = false,
@@ -100,7 +102,7 @@ export default function ListLayoutWithTags({
 
   return (
     <div className="mx-auto w-full px-4 sm:w-4/5 sm:px-0">
-      <div className="py-8">
+      <div className="py-4">
         <div className="mb-4 flex items-center justify-between">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100">
             {title}
@@ -114,6 +116,11 @@ export default function ListLayoutWithTags({
             </Link>
           )}
         </div>
+        {description && (
+          <div className="pb-4">
+            <div>{description}</div>
+          </div>
+        )}
         <div className="max-w relative">
           <input
             aria-label="Search articles"

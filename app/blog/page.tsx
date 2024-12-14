@@ -21,11 +21,12 @@ export default function BlogPage() {
 
   return (
     <ListLayout
+      title="All Posts"
+      description="My unorganized thoughts on programming tips, projects, etc."
       posts={posts}
       postGroup="blog"
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="All Posts"
     />
   )
 }

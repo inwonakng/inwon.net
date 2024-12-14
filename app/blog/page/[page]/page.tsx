@@ -25,11 +25,12 @@ export default function Page({ params }: { params: { page: string } }) {
 
   return (
     <ListLayout
+      title="All Posts"
+      description="My unorganized notes on programming tips, projects, etc."
       posts={posts}
       postGroup="blog"
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="All Posts"
     />
   )
 }

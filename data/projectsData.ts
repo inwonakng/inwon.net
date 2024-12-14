@@ -2,24 +2,21 @@ const projectsData = [
   {
     title: 'Private Supply Chain using Chainlink CCIP',
     description: `Our submission for Chalink Constellation Hackathon 2023.
-    Implemented a supply chain scenario using Chainlink's CCIP protocol and Circom's ZK circuits to enable a private supply chain solution.
-    `,
-    imgSrc: '/static/images/blog/chainlink-ccip-zk-supply-chain/chainlink-constellation-hackathon-banner.png',
+    Implemented a private supply chain scenario using Chainlink and Circom's ZK circuits.`,
+    imgSrc:
+      '/static/images/blog/chainlink-ccip-zk-supply-chain/chainlink-constellation-hackathon-banner.png',
     href: '/blog/chainlink-ccip-zk-supply-chain',
   },
   {
     title: 'Crowdsourcing on Algorand',
-    description: `Submission for Algorand foundation's Mega Ace Hackathon project. 
-    Implemented a full-stack app that uses Algorand as the backend for creating arbitrary data repositories that can receive submissions from anyone on the blockchain.
-    `,
+    description: `Submission for Algorand foundation's Mega Ace Hackathon project. Implemented a full-stack app that uses Algorand as the backend for creating arbitrary data repositories.`,
     imgSrc: '/static/images/blog/crowdsourcing-on-algorand/algorand-mega-ace-hackathon.png',
     href: '/blog/crowdsourcing-on-algorand',
   },
   {
     title: 'Robust Federated Learning',
     description: `Class project for Security and Privacy of Machine Learing. 
-    Built a framework mimicing pytorch API to implement aggregator functions and simulate federated learning situations with delays in client updates.
-    Also implemented a new aggregation method using Agglomerative Clustering, as well as designing/implementing an improved version of staleness weighting function.`,
+    Built a framework to benchmark different aggregator functions and simulate federated learning situations with delays in client updates.`,
     imgSrc: '/static/images/blog/robust-fl/diagram.png',
     href: '/blog/robust-fl',
   },
@@ -42,9 +39,7 @@ const projectsData = [
   {
     title: 'Critical Infrastructures of Northeastern US',
     description: `Class project for Xinformatics. 
-    Worked with a team to gather various geographic data on the northeastern region to create 
-    a regression model of possible landslide danger to the power infrastructures of Northeastern US. 
-    Built an interactive platform to view each infrastructures and also filter by danger level/state region.`,
+     Built an interactive platform to view each infrastructures and also filter by danger level/state region predicted by a regression model.`,
     imgSrc: '/static/images/blog/critical-infrastructures/dashboard-screenshot.png',
     href: '/blog/critical-infrastructures',
   },
