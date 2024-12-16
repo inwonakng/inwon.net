@@ -102,26 +102,82 @@ interface MobileTocProps {
 }
 
 export const MobileToc = ({ toc }: MobileTocProps) => {
+  const [expanded, setExpanded] = useState(true)
+
   return (
     <>
       {toc.length > 0 && (
         <div
-          className={`flex flex-col 
-          items-center justify-center 
-          gap-y-2 divide-y divide-gray-200 py-4
+          className={`gap-y-2 divide-y divide-gray-200 py-4
           dark:divide-gray-700`}
         >
-          <h3 className="text-base font-bold">Table of contents</h3>
-          <ul className={`flex flex-col pt-2 text-sm`}>
-            {toc.map((item) => (
-              <li key={item.url}>
-                <Link href={item.url} className={`${offset[item.depth]}`}>
-                  {`• `}
-                  {item.value}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div
+            className={`
+              flex
+              max-h-full flex-row
+              items-center items-stretch justify-center 
+              overflow-y-auto rounded-t-lg
+              border-2 border-solid
+              border-gray-300 bg-gray-200/30 dark:bg-gray-500/60
+            `}
+          >
+            <button onClick={() => setExpanded(!expanded)} className="w-full">
+              <div className="flex flex-row items-center justify-center gap-x-2">
+                <h3 className="text-base font-bold">Table of contents</h3>
+                {expanded ? (
+                  <svg
+                    fill="none"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 15 5.2929-5.29289c.3333-.33334.5-.5.7071-.5s.3738.16666.7071.5l5.2929 5.29289"
+                      stroke="#2a353d"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    fill="none"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 9 5.2929 5.2929c.3333.3333.5.5.7071.5s.3738-.1667.7071-.5l5.2929-5.2929"
+                      stroke="#2a353d"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                )}
+              </div>
+            </button>
+          </div>
+          <div
+            className={`${!expanded && 'hidden'} 
+              overflow-auto px-2 pb-4 pt-2
+              `}
+          >
+            <div className="flex flex-col items-center justify-center">
+              <ul className={`flex flex-col pt-2 text-sm`}>
+                {toc.map((item) => (
+                  <li key={item.url}>
+                    <Link href={item.url} className={`${offset[item.depth]}`}>
+                      {`• `}
+                      {item.value}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       )}
     </>

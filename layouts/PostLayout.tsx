@@ -42,7 +42,7 @@ export default function PostLayout({
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
   return (
-    <div className="mx-auto w-full px-4 sm:w-4/5 sm:px-0">
+    <div className="mx-auto w-full px-4">
       <ScrollTopAndComment />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
@@ -128,9 +128,9 @@ export default function PostLayout({
                   <Link
                     href={`/${basePath}`}
                     className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                    aria-label="Back to the blog"
+                    aria-label="Back to posts list"
                   >
-                    &larr; Back to the blog
+                    &larr; Back to posts list
                   </Link>
                 </div>
               </div>
