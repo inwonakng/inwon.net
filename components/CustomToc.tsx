@@ -135,9 +135,6 @@ export const MobileToc = ({ toc }: MobileTocProps) => {
                     <path
                       d="m6 15 5.2929-5.29289c.3333-.33334.5-.5.7071-.5s.3738.16666.7071.5l5.2929 5.29289"
                       stroke="#2a353d"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
                     />
                   </svg>
                 ) : (
@@ -151,9 +148,6 @@ export const MobileToc = ({ toc }: MobileTocProps) => {
                     <path
                       d="m6 9 5.2929 5.2929c.3333.3333.5.5.7071.5s.3738-.1667.7071-.5l5.2929-5.2929"
                       stroke="#2a353d"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
                     />
                   </svg>
                 )}
