@@ -24,6 +24,7 @@ const offset = {
 
 export const DesktopToc = ({ toc }: DesktopTocProps) => {
   const [expanded, setExpanded] = useState(true)
+  const minDepth = Math.min(...toc.map((item) => item.depth)) - 1
 
   return (
     <>
@@ -81,7 +82,7 @@ export const DesktopToc = ({ toc }: DesktopTocProps) => {
               <h3 className="text-base font-bold">Table of contents</h3>
               <ul className={`flex flex-col text-sm`}>
                 {toc.map((item) => (
-                  <li key={item.url} className={`${offset[item.depth]}`}>
+                  <li key={item.url} className={`${offset[item.depth - minDepth]}`}>
                     <Link href={item.url}>
                       {`• `}
                       {item.value}
@@ -103,6 +104,7 @@ interface MobileTocProps {
 
 export const MobileToc = ({ toc }: MobileTocProps) => {
   const [expanded, setExpanded] = useState(true)
+  const minDepth = Math.min(...toc.map((item) => item.depth)) - 1
 
   return (
     <>
@@ -163,7 +165,7 @@ export const MobileToc = ({ toc }: MobileTocProps) => {
               <ul className={`flex flex-col pt-2 text-sm`}>
                 {toc.map((item) => (
                   <li key={item.url}>
-                    <Link href={item.url} className={`${offset[item.depth]}`}>
+                    <Link href={item.url} className={`${offset[item.depth - minDepth]}`}>
                       {`• `}
                       {item.value}
                     </Link>
