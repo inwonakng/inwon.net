@@ -1,4 +1,5 @@
 import 'css/tailwind.css'
+import "css/remark-callout.css"
 import '@/components/search/algolia.css'
 
 import { Space_Grotesk } from 'next/font/google'

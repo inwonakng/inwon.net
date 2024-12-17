@@ -4,6 +4,7 @@ import type { Toc } from './remark-toc-headings'
 import { remarkTocHeadings, extractTocHeadings } from './remark-toc-headings'
 import type { ImageNode } from './remark-img-to-jsx'
 import { remarkImgToJsx } from './remark-img-to-jsx'
+import { remarkCallout } from './remark-callout'
 
 export type { Toc, ImageNode }
 
@@ -12,5 +13,6 @@ export {
   remarkCodeTitles,
   remarkImgToJsx,
   remarkTocHeadings,
+  remarkCallout,
   extractTocHeadings,
 }
