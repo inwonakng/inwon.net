@@ -14,7 +14,7 @@ images:
   - /static/images/nvim-search-and-replace-fzf/step5-2.png
 ---
 
-# Single file case
+## Single file case
 
 `:s` is the command to do search and replace on nvim.
 The basic syntax is `:s/old/new/g` where `old` is the string to be replaced and `new` is the string to replace with.
@@ -30,12 +30,12 @@ Then type `:s/old/new/g` and press enter.
 
 You can use regex for your matches, and may also specify case insensitivity by prepending `\C` (case sensitive) or `\c` (case insensitive) to the search term, depending on your default setting.
 
-## Using case sensitivity
+### Using case sensitivity
 
 If you find that you need to jump around your command, you can press `ctrl+f` to open the command in a buffer.
 This allows you to enter normal mode and also check your previous commands.
 
-# Multi file case
+## Multi file case
 
 You can do multi-file search and replace by using the popular [`spectre`](https://github.com/nvim-pack/nvim-spectre) plugin for nvim.
 But if you already of a fuzzy file finder such as [`fzf-lua`](https://github.com/ibhagwan/fzf-lua) or [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim), you can achieve the same without needing an extra plugin.

@@ -8,10 +8,10 @@ summary: Quick guide on how to use macros in vim
 images: 
 ---
 
-# What are macros?
+## What are macros?
 A marco is a sequence of vim actions that you can record for re-using.
 
-# Why use macros?
+## Why use macros?
 Consider the following case (this is extremely contrived but still):
 Let's say that you have a function like this.
 
@@ -39,7 +39,7 @@ This is a good example of where macros can come in handy.
 
 For each line, you can achieve the transformation by the following keystokes: `0vec""<ESC>Per=2bye$bvep`.
 
-## Breakdown
+### Breakdown
 - `0`: Go to begining of line.
 - `vec`: Visually select until end of this word and trigger `change` to enter input mode while copying the selected word.
 - `""<ESC>P`: Put two quotation marks, go to norma mode, and paste before the last quotation mark.
@@ -48,13 +48,13 @@ For each line, you can achieve the transformation by the following keystokes: `0
 - `$b`: Go to the end of the line and back one word.
 - `vep`: Select until the end of the word and paste to overwrite.
 
-# Using macros in vim
+## Using macros in vim
 You can "record" macro by pressing `q` followed by a letter (a-z) and then the sequence of keystrokes you want to record.
 You can then replay the macro by pressing `@` followed by the letter you used to record the macro.
 
 For example, you can you can press `qh` to record a macro for `h` and execute your first line, then repeat them in the next line by pressing `@h`.
 
-# Using multi-line macros
+## Using multi-line macros
 Cool, but you still have to repeat the macro for each line.
 Surely there is a better way?
 

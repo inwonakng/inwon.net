@@ -11,24 +11,24 @@ summary: A quick step-by-step guide to benchmarking the resource requirements of
 images: []
 ---
 
-# Why do I need to benchmark?
+## Why do I need to benchmark?
 
 Computational cost of training and deploying deep learning (DL) models has become an increasingly difficult problem, especially with the success of transformer-based models that span at least a billion parameters.
 
-# Terms
+## Terms
 
 - **FLOP(S)**: Floating Point Operations (Per Second)
 - **MAC**: Multiply-Accumulate Operations
   - 1 MAC ≈ 2 FLOP
 
-# What should I benchmark?
+## What should I benchmark?
 
 The idea behind benchmarking (also known as profiling in some context) is to understand the resource requirements for your planned DL pipeline.
 By getting the memory and computation requirements of your model, you can get an idea of how much resource you should expect to dedicate to your particular pipeline. 
 In specific, this post will detail the process to benchmark the needs of an arbitrary pytorch model.
 
 
-# Installation
+## Installation
 
 It's best if you know how to use some form of virtual environments (you can refer to [this post](/blog/python-dependency-management) if you need a refresher).
 It's not necessary, but it is strongly recommended.
@@ -46,11 +46,11 @@ You can start by installing `ptflops` using pip:
 pip install ptflops
 ```
 
-# Usage
+## Usage
 
 Once `ptflops` is installed, you can write a simple script that loads your model and calculates the FLOPS and MACs using it.
 
-## Simple Case
+### Simple Case
 
 A simple case where the input to the `__forward__` call is just a single argument is as follows:
 
@@ -72,14 +72,14 @@ class SimpleNet(nn.Module):
 model = SimpleNet(10, 2)
 macs, params = get_model_complexity_info(
     model,
-    input_res=(1, 10),  # batch_size, input_dim
+    input_res=(1, 10),  ## batch_size, input_dim
     as_strings=True,
     print_per_layer_stat=True,
     verbose=True,
 )
 
 print("Compute:", macs)
-print("Memory (# params):", params)
+print("Memory (## params):", params)
 ```
 
 The second last line will print the amount of MACs required to run the model given the batch size (in this case set to 1).
@@ -87,7 +87,7 @@ Using this value, you can now calculate how many epochs/batches you estimate to 
 The last line will tell you how many parameters are present in your model. This is useful to understand how much memory you need to store the model.
 
 
-## More Complex Case
+### More Complex Case
 
 The above example is sufficient if your model's input is a single parameter.
 But what it takes multiple tensors?
@@ -141,7 +141,7 @@ def input_constructor(input_res):
 model = SimpleNet(10, 2)
 macs, params = get_model_complexity_info(
     model,
-    input_res=(1,),  # This argument should always be a tuple
+    input_res=(1,),  ## This argument should always be a tuple
     input_constructor=input_constructor,
     as_strings=True,
     print_per_layer_stat=True,

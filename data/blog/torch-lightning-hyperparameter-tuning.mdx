@@ -15,11 +15,11 @@ images:
   - /static/images/blog/torch-lightning-hyperparameter-tuning/scatter.png
 ---
 
-# What is Pytorch Lightning?
+## What is Pytorch Lightning?
 
 [Pytorch lightning](https://www.pytorchlightning.ai/index.html), or just Lightning, is a high-level framework that can be built on top of pytorch-based models. It takes care of device management, distributed device settings, logging and much more in an organized way.
 
-## Why use it?
+### Why use it?
 
 The reason I picked this framework up was the fact that I don't have to do any manual device management.
 Before learning lightning, I used to create a file called `device.py` and to a top-level import for the deviced used in the experiments.
@@ -85,7 +85,7 @@ So it really just looks like your regular `nn.Module` subclass.
 That's because `pl.LightningModule` is a subclass of `nn.Module` and it inherits all the methods and attributes from it.
 Easy enough!
 
-## So what about logging?
+### So what about logging?
 
 A nice feature of Lightning is that it comes with built-in support for Tensorboard.
 If you are not famiilar, Tensorbaord is a dashboard that you can use the track your models' updates in real time.
@@ -97,7 +97,7 @@ from torch.utils.tensorboard import SummaryWriter
 writer = SummaryWriter('./log')
 
 for epoch in range(1000):
-    # do something with model
+    ## do something with model
     loss = criterion(out, y)
     ...
 
@@ -110,7 +110,7 @@ It will look something like the following:
 
 ![tensorboard-main-page](/static/images/torch-lightning-hyperparameter-tuning/tensorboard.png)
 
-## Basic hyperparameter tuning
+### Basic hyperparameter tuning
 
 This is useful enough when you just want to look at your loss curve or check various metric scores.
 However, tensorboard can do much more.
@@ -153,12 +153,12 @@ class MyModel(pl.LightningModule):
         self.logger.log_params(self.hparams, {'val/loss': 0, 'test/loss': 0, ...})
 
     def validation_step(self, batch, batch_idx):
-        # compute loss, and maybe some metrics
+        ## compute loss, and maybe some metrics
         ...
         self.log('val/loss', loss)
 
     def test_step(self, batch, batch_idx):
-        # compute loss, and maybe some metrics
+        ## compute loss, and maybe some metrics
         ...
         self.log('test/loss', loss)
 
@@ -189,15 +189,15 @@ All you need to do is the following:
 
 It's actually pretty well documented in the [official docs](https://lightning.ai/docs/pytorch/latest/extensions/logging.html#logging-hyperparameters). But by just following their instructions, I wasn't able to get the metrics to show up properly on the hparams dashboard. After a few hours of search, it seemed that turning off the `default_hp_metric` was the final piece -- at least in my case of custom hparam metrics. This took me some digging online to find, and I'm hoping that this will help you if you come across this post. I have also seen [posts online](https://github.com/Lightning-AI/lightning/issues/1225#issuecomment-605644904) noting that if some previous runs in the log directory did not have `hpmetric`, tensorboard struggles with finding the metrics, which might be helpful as well.
 
-# Using Ray Tune
+## Using Ray Tune
 
 The method I described above is useful for a small-scale testing of hyperparameters. However, as your project's scale grows, the number of possible combinations of hyperparameters as well as managing parallel runs over multiple accelerator devices can become a headache. That's where [Ray Tune](https://docs.ray.io/en/latest/tune/index.html) comes into the play.
 
-## What is Ray Tune?
+### What is Ray Tune?
 
 Ray Tune is a framework that implements several state-of-the-art hyperparameter tuning algorithms. It also takes care of distributed training in a multi-device setting. It supports multiple types of ML frameworks, including pytorch, pytorch-lightning, jax and tensorflow. Since I'm working with pytorch lightning, I will just cover the lightning case in this post. At the time of writing, the stable version for Ray Tune is `2.5`. But the API's I am using are at their alpha stage, so some specifics may be different in the future.
 
-## How much code do I have to modify?
+### How much code do I have to modify?
 
 Not much! The examples for Ray Tune might be a bit daunting, but that's because of the many settings you have to set. Ray Tune has a nice integration with pytorch lightning, so you do not have to change much in your `LightningModule` subclass. All you need to do is write anther script that imports your model.
 
@@ -215,10 +215,10 @@ from ray.tune.schedulers import ASHAScheduler, PopulationBasedTraining
 from ray.tune.search.hyperopt import HyperOptSearch
 from ray.train.lightning import LightningConfigBuilder, LightningTrainer
 
-# prepare data module
+## prepare data module
 dm = load_data_module(...)
 
-# define how the lightning module will work
+## define how the lightning module will work
 lightning_config = (
     LightningConfigBuilder()
     .module(
@@ -249,12 +249,12 @@ run_config = RunConfig(
     ),
 )
 
-# Notice that I'm not using a GPU.. can modify as needed
+## Notice that I'm not using a GPU.. can modify as needed
 scaling_config = ScalingConfig(
     num_workers=1, use_gpu=False, resources_per_worker={"CPU": 1}
 )
 
-# Define a base LightningTrainer without hyper-parameters for Tuner
+## Define a base LightningTrainer without hyper-parameters for Tuner
 lightning_trainer = LightningTrainer(
     scaling_config=scaling_config,
     run_config=run_config,
@@ -273,7 +273,7 @@ tuner = tune.Tuner(
         search_alg=search_alg,
     ),
     run_config=air.RunConfig(
-        name="tune_asha", # <- This sets the name for the run
+        name="tune_asha", ## <- This sets the name for the run
     ),
 
 )

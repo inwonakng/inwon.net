@@ -10,20 +10,20 @@ summary: A simple guide on using conda and venv to manage python virtual environ
 images: []
 ---
 
-# Why do I need a virtual environment?
+## Why do I need a virtual environment?
 Virtual environments allow you to isolate your python packages from one project to another.
 This ensures that you do not have conflicting dependencies between projects.
 It also allows you to record the specific list of packages to run the project, so that it can be reproducible. 
 There are many ways to manage virtual environments, but the two of the most popular are `conda` and `venv`.
 
-# Python venv
+## Python venv
 
-## What is venv?
+### What is venv?
 `venv`, or [virtual environment](https://docs.python.org/3/library/venv.html), is python's built-in way of managing a virtual environment.
 It creates an fresh (empty) python environment using the same version of python as the python instance you use to create the environment.
 For example, if you use `python 3.10.12` to create the environment, your environment will also have version `3.10.12`.
 
-## How do I use it?
+### How do I use it?
 You can create one by running `python -m venv {ENV_NAME}`.
 Once you run this command, a directory named `{ENV_NAME}` will appear in the directory you run the command from.
 To activate this environment, you can run `source {ENV_NAME}/bin/activate`.
@@ -32,46 +32,46 @@ Once you activate the environment, your shell should say `({ENV_NAME})` for ever
 If this does not work for some reason, you can also check your python executable by running `which python`.
 If this returns `{ENV_NAME}/bin/python`, you are using the correct python version.
 
-## Saving/loading dependencies
+### Saving/loading dependencies
 Once you have installed some packages, you probably want to save which ones you installed.
 You can do this by running `pip freeze > requirements.txt`.
 `pip freeze` will list all of the packages you have installed, and `> requirements.txt` will redirect the output to a file named `requirements.txt`.
 Similarly, you can install all of the packages listed in a `requirements.txt` file by running `pip install -r requirements.txt`.
 
-# Conda
+## Conda
 
-## What is conda?
+### What is conda?
 [Conda](https://conda.io/projects/conda/en/latest/index.html) or [miniconda](https://conda.io/miniconda.html) is another software that can be used to manage dependencies.
 It is important to note that conda is not limited to python, although it is most commonly used for it.
 Unlike `venv` which depends on the system python, conda is able to manage its own python version.
 And it is not a python module like `venv`, meaning that it lives in a layer above python.
 
-## How do I use it?
+### How do I use it?
 Downloading conda is pretty straightforward.
 You can install it using a single script, available on their [website](https://conda.io/projects/conda/en/latest/index.html).
 
-### Creating an environment
+#### Creating an environment
 Once you finish installation, you can create a new environment using `conda create -n {ENV_NAME}`.
 For example, you can create a new environment named `test` that uses python 3.10 by running `conda create -n test python=3.10 -y`.
 The `-n` flag specifies the name of the environment, and the `python=3.10` flag specifies the version of python to use.
 The `-y` flag is used to automatically answer yes to any prompts, so you can run the command and walk away while it installs.
 You can then activate the environment by running `conda activate {ENV_NAME}` (in this example, `test`), and deactivate it by using `conda deactivate`. 
 
-### Installing packages
+#### Installing packages
 I strongly recommend installing python dependencies using `pip` instead of `conda` if possible.
 While you can install pretty much everything using `conda`, this may slow down your conda installation as it will track everything you install using the command.
 Instead, just use pip for project dependencies, and conda for non-python dependencies.
 
-### Saving/loading dependencies
+#### Saving/loading dependencies
 If you try making a `requirements.txt` file using `pip freeze`, you will notice that some versions do not look sane.
 This is because they are marked with a hash, which is used by conda to track the package.
 Instead, you can use `pip list format=freeze > requirements.txt`, which will use the actual versions of the packages.
 To save the entire conda environment, you can run `conda env export > environment.yml`, which can be loaded using `conda env create -f environment.yml`.
 
-# Tips
+## Tips
 
-## Know which python you are using
+### Know which python you are using
 Sometimes the system may be looking at the wrong python or pip. To check which one you are using, you can run `which python` or `which pip`
 
-## Installing non-python stuff
+### Installing non-python stuff
 You can also install stuff like `tmux` or `git` using conda! This is especially useful if you are on a machine without sudo access and need to install/upgrade these packages. My recommendation is to install these in the `base` environment of conda and create a symlink to them in your home directory, something like `ln -sf {YOUR_CONDA_PATH}/bin/{PACKAGE_NAME} {HOME}/local/bin/{PACKAGE_NAME}`, so that you don't have to install them in every environment.

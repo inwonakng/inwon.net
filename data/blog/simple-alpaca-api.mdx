@@ -16,7 +16,7 @@ In this post, we will go over how to build a simple REST API that allows users t
 
 **disclaimer**: This is a simple modification of the gradio example provided by tloen on huggingface. All credits go to tloen and the researchers at Stanford for training and providing the Alpaca weights. I only wrote the code for the API server.
 
-# Credits
+## Credits
 
 - alpaca-lora interactive huggingface dashboard instance
 
@@ -33,9 +33,9 @@ In this post, we will go over how to build a simple REST API that allows users t
 - llama weights from decapoda research huggingface repo
   - [https://huggingface.co/decapoda-research/llama-7b-hf](https://huggingface.co/decapoda-research/llama-7b-hf)
 
-# Building the API
+## Building the API
 
-## Setup
+### Setup
 
 I used conda in my setup. I also recommend you do, unless you don't have a GPU on your system or want to save space that conda takes. Since this is a lora version of the model, a very lightweight cpu-only machine may be able to do fine, although I have not tested this.
 
@@ -43,7 +43,7 @@ To make the dev environment, simply follow the instructions in the [tloen repo's
 
 Then to install the FastAPI dependencies, run `pip install "fastapi[all]"` after activating the environment.
 
-## Configuring the input
+### Configuring the input
 
 Given the existing gradio and evaluation code, changing it into a simple REST API is simple. We just need to locate the necessary paramaters that can be changed by the user inside [the gradio code](https://github.com/tloen/alpaca-lora/blob/main/generate.py).
 
@@ -84,7 +84,7 @@ That's it!
 
 Then we can re-use the rest of the generation code from [generate.py](https://github.com/tloen/alpaca-lora/blob/main/generate.py) in our POST endpoint.
 
-## Full Code
+### Full Code
 
 The local dependency `utils.prompter` can be found [here](https://github.com/tloen/alpaca-lora/blob/main/utils/prompter.py).
 
@@ -100,13 +100,13 @@ from peft import PeftModel
 from transformers import GenerationConfig, LlamaForCausalLM, LlamaTokenizer
 from utils.prompter import Prompter
 
-# this part can be changed later
+## this part can be changed later
 device = 'cuda'
 base_model = 'decapoda-research/llama-7b-hf'
 load_8bit = False
 lora_weights = 'tloen/alpaca-lora-7b'
 
-# setting up the model stuff
+## setting up the model stuff
 tokenizer = LlamaTokenizer.from_pretrained(base_model)
 model = LlamaForCausalLM.from_pretrained(
     base_model,
@@ -119,13 +119,13 @@ model = PeftModel.from_pretrained(
     lora_weights,
     torch_dtype=torch.float16,
 )
-# unwind broken decapoda-research config
-model.config.pad_token_id = tokenizer.pad_token_id = 0  # unk
+## unwind broken decapoda-research config
+model.config.pad_token_id = tokenizer.pad_token_id = 0  ## unk
 model.config.bos_token_id = 1
 model.config.eos_token_id = 2
 prompter = Prompter()
 
-# post request body handlers
+## post request body handlers
 class GenerationConfigModel(BaseModel):
     temperature: float
     top_p: float

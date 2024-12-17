@@ -13,18 +13,18 @@ images:
   - /static/images/reading/tp-berta/overview.png
 ---
 
-# Summary
+## Summary
 
 The paper presents a fine-tuned RoBERTa-based model for tabular data classification. The authors use what they call **Relative Magnitude Tokens** (decision tree binning + scaling by magnitude) in combination with the **Intra-Feature Attention**.
 
-# Contributions
+The authors propose:
 
 - Magnitude-aware regularization to share bin embeddings across features/datasets.
 - Intra-Feature Attention (IFA) to mix different tokens of a feature before merging.
 
-# Approach
+## Approach
 
-![](/static/images/reading/tp-berta/overview.png)
+![Overview](/static/images/reading/tp-berta/overview.png)
 
 **Relative Magnitude Tokens**:
 
@@ -45,7 +45,7 @@ $$
 
 - _Mix_ the different tokens of a feature (name, value) into a CLS token before the features are merged. One MHSA module is shared across features for this.
 
-# Main Findings
+## Main Findings
 
 - Starting from the pre-trained RoBERTa weights is good.
 - IFA is good.
@@ -53,10 +53,10 @@ $$
 - But TP-BERT shines on categorical.
 - XGB requires more optimization -- Catboost offers better out-of-the-box performance.
 
-# Questions
+## Questions
 
 - Why not compare against local-positional (reset position index at each feature start) encoding?
 
-# Resources
+## Resources
 
 - [Github](https://github.com/jyansir/tp-berta)
