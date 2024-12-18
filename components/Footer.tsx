@@ -32,14 +32,20 @@ export default function Footer() {
           <div className="text-sm text-gray-500 dark:text-gray-400">
             [
             <Link
-              href="https://inwon.net/blog/feed.xml"
+              href={`${siteMetadata.siteUrl}/blog/feed.xml`}
+              rel="alternate"
+              type="application/rss+xml"
+              title="Inwon's Blog RSS Feed"
               className="text-gray-500 dark:text-gray-400"
             >
               Blog
             </Link>
             |
             <Link
-              href="https://inwon.net/reading/feed.xml"
+              href={`${siteMetadata.siteUrl}/reading/feed.xml`}
+              rel="alternate"
+              type="application/rss+xml"
+              title="Inwon's Reading RSS Feed"
               className="text-gray-500 dark:text-gray-400"
             >
               Reading

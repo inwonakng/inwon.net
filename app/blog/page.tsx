@@ -2,10 +2,19 @@ import ListLayout from '@/layouts/ListLayoutWithTags'
 import { allCoreContent, sortPosts } from '@/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
+import siteMetadata from '@/data/siteMetadata'
 
 const POSTS_PER_PAGE = 15
 
-export const metadata = genPageMetadata({ title: 'Blog' })
+export const metadata = {
+  ...genPageMetadata({ title: 'Blog' }),
+  alternates: {
+    canonical: './',
+    types: {
+      'application/rss+xml': `${siteMetadata.siteUrl}/blog/feed.xml`,
+    },
+  },
+}
 
 export default function BlogPage() {
   const posts = allCoreContent(sortPosts(allBlogs))

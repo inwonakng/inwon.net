@@ -34,12 +34,12 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
-  alternates: {
-    canonical: './',
-    types: {
-      'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`,
-    },
-  },
+  // alternates: {
+  //   canonical: './',
+  //   types: {
+  //     'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`,
+  //   },
+  // },
   robots: {
     index: true,
     follow: true,
@@ -73,7 +73,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="msapplication-TileColor" content="#000000" />
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-      <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+      <link rel="alternate" type="application/rss+xml" title="Inwon's Blog RSS Feed" href={`${siteMetadata.siteUrl}/blog/feed.xml`} />
+      <link rel="alternate" type="application/rss+xml" title="Inwon's Reading RSS Feed" href={`${siteMetadata.siteUrl}/reading/feed.xml`} />
       <body className="antialiased">
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
