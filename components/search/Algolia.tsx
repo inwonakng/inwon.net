@@ -12,8 +12,10 @@ import type {
   DocSearchModal as DocSearchModalType,
   DocSearchProps,
   DocSearchModalProps,
+  InternalDocSearchHit,
+  StoredDocSearchHit,
 } from '@docsearch/react'
-import type { InternalDocSearchHit, StoredDocSearchHit } from '@docsearch/react/dist/esm/types'
+// import type {} from '@docsearch/react/dist/esm/types'
 
 export type AlgoliaSearchProps = {
   algoliaConfig: DocSearchProps

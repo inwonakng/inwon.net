@@ -8,11 +8,10 @@ import readingTagData from 'app/reading-tag-data.json'
 import { genPageMetadata } from 'app/seo'
 import { Metadata } from 'next'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { tag: string; tagGroup: string }
+export async function generateMetadata(props: {
+  params: Promise<{ tag: string; tagGroup: string }>
 }): Promise<Metadata> {
+  const params = await props.params
   const tag = decodeURI(params.tag)
   const tagGroup = decodeURI(params.tagGroup)
   return genPageMetadata({
@@ -41,7 +40,10 @@ export const generateStaticParams = async () => {
   return [...blogPaths, ...readingPaths]
 }
 
-export default function TagPage({ params }: { params: { tag: string; tagGroup: string } }) {
+export default async function TagPage(props: {
+  params: Promise<{ tag: string; tagGroup: string }>
+}) {
+  const params = await props.params
   const allPosts = {
     blog: allBlogs,
     reading: allReadings,
