@@ -4,17 +4,14 @@ import { useEffect, useCallback } from 'react'
 import { useTheme } from 'next-themes'
 
 export interface UtterancesConfig {
-  provider: 'utterances'
-  utterancesConfig: {
-    theme: string
-    darkTheme: string
-    repo: string
-    label: string
-    issueTerm: string
-  }
+  theme: string
+  darkTheme: string
+  repo: string
+  label: string
+  issueTerm: string
 }
 
-export type UtterancesProps = UtterancesConfig['utterancesConfig']
+export type UtterancesProps = UtterancesConfig
 
 export const Utterances = ({ theme, darkTheme, repo, label, issueTerm }: UtterancesProps) => {
   const { theme: nextTheme, resolvedTheme } = useTheme()

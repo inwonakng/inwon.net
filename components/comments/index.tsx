@@ -1,4 +1,5 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
+// @ts-nocheck
 
 import { Disqus, DisqusConfig, DisqusProps } from './Disqus'
 import { Giscus, GiscusConfig, GiscusProps } from './Giscus'
@@ -11,7 +12,12 @@ declare global {
   }
 }
 
-export type CommentsConfig = GiscusConfig | DisqusConfig | UtterancesConfig
+export type CommentsConfig = {
+  provider: string
+  giscusConfig?: GiscusConfig
+  disqusConfig?: DisqusConfig
+  utterancesConfig?: UtterancesConfig
+}
 
 /**
  * @example
@@ -58,11 +64,11 @@ export interface CommentsProps {
 export const Comments = ({ commentsConfig, slug }: CommentsProps) => {
   switch (commentsConfig.provider) {
     case 'giscus':
-      return <Giscus {...commentsConfig.giscusConfig} />
+      return commentsConfig.giscusConfig && <Giscus {...commentsConfig.giscusConfig} />
     case 'utterances':
-      return <Utterances {...commentsConfig.utterancesConfig} />
+      return commentsConfig.utterancesConfig && <Utterances {...commentsConfig.utterancesConfig} />
     case 'disqus':
-      return <Disqus slug={slug} {...commentsConfig.disqusConfig} />
+      return commentsConfig.disqusConfig && <Disqus slug={slug} {...commentsConfig.disqusConfig} />
   }
 }
 

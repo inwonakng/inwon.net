@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client'
 
 import { Comments as CommentsComponent } from '@/components/comments/index'

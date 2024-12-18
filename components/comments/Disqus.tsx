@@ -4,13 +4,10 @@ import { useTheme } from 'next-themes'
 import { useEffect, useCallback } from 'react'
 
 export interface DisqusConfig {
-  provider: 'disqus'
-  disqusConfig: {
-    shortname: string
-  }
+  shortname: string
 }
 
-export type DisqusProps = DisqusConfig['disqusConfig'] & {
+export type DisqusProps = DisqusConfig & {
   slug?: string
 }
 
