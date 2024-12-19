@@ -4,6 +4,7 @@ date: 2024-10-08
 tags:
   - paper
   - tabular-data
+  - model-architecture
   - deep-learning
   - transfer-learning
 draft: false
