@@ -127,3 +127,27 @@
   color: var(--color-danger-fg);
   color: var(--fgColor-danger,var(--color-danger-fg))
 }
+
+.markdown-alert.markdown-alert-motivation {
+  border-left-color: var(--borderColor-accent-emphasis,var(--color-accent-emphasis))
+}
+.markdown-alert.markdown-alert-motivation .markdown-alert-title {
+  color: var(--color-accent-fg);
+  color: var(--fgColor-accent,var(--color-accent-fg))
+}
+
+.markdown-alert.markdown-alert-intuition {
+  border-left-color: var(--borderColor-success-emphasis,var(--color-success-emphasis))
+}
+.markdown-alert.markdown-alert-intuition .markdown-alert-title {
+  color: var(--color-success-fg);
+  color: var(--fgColor-success,var(--color-success-fg))
+}
+
+.markdown-alert.markdown-alert-setting {
+  border-left-color: var(--borderColor-done-emphasis,var(--color-done-emphasis))
+}
+.markdown-alert.markdown-alert-setting .markdown-alert-title {
+  color: var(--color-done-fg);
+  color: var(--fgColor-done,var(--color-done-fg))
+}

@@ -24,7 +24,7 @@ The authors propose:
 
 ## Approach
 
-![Overview](/static/images/reading/tp-berta/overview.png)
+![Overview of approach](/static/images/reading/tp-berta/overview.png)
 
 **Relative Magnitude Tokens**:
 
@@ -33,19 +33,19 @@ The authors propose:
   - _Triplet Loss_: Similar to contrastive loss, but use a triplet formulation, where there is an _anchor_, _positive_ and _negative_ samples.
 
 $$
-\begin{gather*}
+\begin{gather}
 L_{reg} = \max(\text{dist}(f(k_1), f(k_2)) - \text{dist}(f(k_1), f(k_3)) + \text{mag}(k_1,k_2,k_3),0),\\
 s.t.~|k_1 - k_2 | < |k_1 - k_3| \\
 f(k) = \text{LayerNorm}(\text{Linear}(\text{Embed}(k, E))) \\
 \text{mag}(k_1, k_2, k_3) = \frac{|k_1-k_3| - |k_1-k_2|}{n_{\text{bin}}}
-\end{gather*}
+\end{gather}
 $$
 
 **Intra-Feature Attention**:
 
 - _Mix_ the different tokens of a feature (name, value) into a CLS token before the features are merged. One MHSA module is shared across features for this.
 
-## Main Findings
+## Findings
 
 - Starting from the pre-trained RoBERTa weights is good.
 - IFA is good.
@@ -53,10 +53,7 @@ $$
 - But TP-BERT shines on categorical.
 - XGB requires more optimization -- Catboost offers better out-of-the-box performance.
 
-## Questions
-
-- Why not compare against local-positional (reset position index at each feature start) encoding?
-
 ## Resources
 
-- [Github](https://github.com/jyansir/tp-berta)
+- [Code](https://github.com/jyansir/tp-berta)
+

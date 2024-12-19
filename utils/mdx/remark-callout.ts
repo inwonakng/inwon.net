@@ -4,10 +4,11 @@ import { visit } from 'unist-util-visit'
 import type { Plugin } from 'unified'
 import type { Root, PhrasingContent } from 'mdast'
 
-const alertRegex = /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG)\]/i
+const alertRegex =
+  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG|MOTIVATION|INTUITION|SETTING)\]/i
 
 const alertLegacyRegex =
-  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG)(\/.*)?\]/i
+  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG|MOTIVATION|INTUITION|SETTING)(\/.*)?\]/i
 
 type Option = {
   /**
@@ -130,6 +131,9 @@ type IconType =
   | 'abstract'
   | 'question'
   | 'bug'
+  | 'motivation'
+  | 'intuition'
+  | 'setting'
 
 type IconData = {
   hName: string
@@ -287,5 +291,43 @@ const iconData: Record<IconType, IconData[]> = {
     { hName: 'path', hProperties: { d: 'M20.97 5c0 2.1-1.6 3.8-3.5 4' } },
     { hName: 'path', hProperties: { d: 'M22 13h-4' } },
     { hName: 'path', hProperties: { d: 'M17.2 17c2.1.1 3.8 1.9 3.8 4' } },
+  ],
+  motivation: [
+    {
+      hName: 'path',
+      hProperties: {
+        d: 'M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5',
+      },
+    },
+    { hName: 'path', hProperties: { d: 'M9 18h6' } },
+    { hName: 'path', hProperties: { d: 'M10 22h4' } },
+  ],
+  intuition: [
+    {
+      hName: 'path',
+      hProperties: {
+        d: 'M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5',
+      },
+    },
+    { hName: 'path', hProperties: { d: 'M9 18h6' } },
+    { hName: 'path', hProperties: { d: 'M10 22h4' } },
+  ],
+  setting: [
+    {
+      hName: 'rect',
+      hProperties: {
+        width: '7',
+        height: '7',
+        x: '14',
+        y: '3',
+        rx: '1',
+      },
+    },
+    {
+      hName: 'path',
+      hProperties: {
+        d: 'M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3',
+      },
+    },
   ],
 }

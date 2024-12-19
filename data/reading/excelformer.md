@@ -2,6 +2,7 @@
 title: 'Can a Deep Learning Model be a Sure Bet for Tabular Prediction?'
 date: 2024-12-17
 tags:
+  - paper
   - deep-learning
   - machine-learning
   - model-architecture
@@ -19,7 +20,7 @@ Deep learning on tabular data faces three challenges:
 
 1. **rotational variance** -- the order of columns should not matter.
 2. **large data demand** -- DNNs have a _larger hypothesis space_, and require more training data compared to shallow algorithms.
-3. **over-smooth solution** -- DNNs tend to produce overly smooth solutions. i.e. when faced with irregular decision boundaries, the learning algorithms suffer (as pointed out by [Grinsztajn et. al](/reading/papers/why-do-trees.md)
+3. **over-smooth solution** -- DNNs tend to produce overly smooth solutions. i.e. when faced with irregular decision boundaries, the learning algorithms suffer (as pointed out by [Grinsztajn et. al](/reading/why-do-trees.md)
 
 ## Approach
 
@@ -63,7 +64,7 @@ $$
 
 where $S_H \in \{0,1\}^{f \times d}$ is a stack of binary masks $s_h:S_H = [s_h, s_h,..., s_h ]^T$, where $\sum s_h = \left\lfloor \lambda_H \cdot d \right\rfloor$ for each row vector $s_h$, and $\mathbb{1}$ is a $f \times d$ matrix of $1$s. In other words, $S_H$ masks out $\left\lfloor \lambda_H \cdot d \right\rfloor$ entries of each row.
 
-> [!note/Intuition]
+> [!intuition]
 > Since each embedding element is projected from a scalar feature value, we can consider each embedding dimension as a distinct "profile" version of input data. Thus, Hid-Mix regularizes the classifier to behave like a bagging predictor.
 
 #### FEAT-mix
@@ -89,7 +90,7 @@ $$
 
 where $s_F^{(i)}$ is the $i$-th element of $s_F$, and $I(\bf{f}_i)$ is the importance of the $i$-th feature. Similarly to the SPA module, the _mutual information_ is what the authors appear to use.
 
-> [!note/Intuition]
+> [!intuition]
 > Since each feature may have different contribution to the label, weighing the two labels by how much "usefulness" each sample contributed allows uninformative features to be filtered.
 
 ### Attentive FFNs
@@ -115,7 +116,5 @@ However, why they do this is not very clearly motivated.
 ## Resources
 
 - [Github](https://github.com/whatashot/excelformer)
-
-## References
 
 [^1]: Yun, Sangdoo, Dongyoon Han, Seong Joon Oh, Sanghyuk Chun, Junsuk Choe, and Youngjoon Yoo. "Cutmix: Regularization strategy to train strong classifiers with localizable features." In Proceedings of the IEEE/CVF international conference on computer vision, pp. 6023-6032. 2019.
