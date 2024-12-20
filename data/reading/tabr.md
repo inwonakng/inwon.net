@@ -19,8 +19,6 @@ images:
 
 The paper presents a retrieval-augmented generation (RAG) inspired model for tabular data classification. The authors propose a new mechanism for similarity calculation and retrieval and show superior performance compared to previous DL models and GBDT family on previously proposed tabular benchmarks.
 
-## Contributions
-
 - A Retrieval Augmented Generation (RAG) inspired for tabular data classification.
 - Modified mechanism for similarity calculation (and thus retrieval).
 
@@ -29,13 +27,13 @@ The paper presents a retrieval-augmented generation (RAG) inspired model for tab
 - Resnet + clustering-like for RAG type.
 - Attention-like mechanism to calculate _similarity_ scores.
 
-![](/static/images/reading/tabr/mechanism.png)
+![Mechanism](/static/images/reading/tabr/mechanism.png)
 
-Retrieval-based mechanism for tabular data classification.
+> [!image/Retrieval-based mechanism for tabular data classification]
 
-![](/static/images/reading/tabr/similarity.png)
+![Similarity module](/static/images/reading/tabr/similarity.png)
 
-Similarity mechanism.
+> [!image/Similarity mechanism]
 
 ### Retrieval Mechanism
 
@@ -69,13 +67,21 @@ $$
      T(\cdot) = \text{LinearWithoutBias}(\text{Dropout}(\text{ReLU}(\text{Linear}(\cdot))))
      $$
 
-  - Intuition: Add more information about the target sample $x$ into the value vector.
-  - $W_Y(y_i)$ is the _raw contribution_ of sample $i$, where $T(W_K(\tilde x) - W_K(\tilde x_i))$ is the _correction_ term. $T(\cdot)$ translates the differences of $x$ and $x_i$ in the key-space ($W_K$) to the _label space_ ($W_Y$).
+> [!intuition]
+> This step is adding more information about the target sample $x$ into the value vector. $W_Y(y_i)$ is the _raw contribution_ of sample $i$ (because it tells us about the label associated with that sample), where $T(W_K(\tilde x) - W_K(\tilde x_i))$ is the _correction_ term. $T(\cdot)$ translates the differences of $x$ and $x_i$ in the key-space ($W_K$) to the _label space_ ($W_Y$).
 
-  4. Remove the scaling term $d^{-1/2}$ (artifact of vanilla attention anyways) from the similarity calculation.
-     $$
-     k = W_K(\tilde x), k_i = W_K(\tilde x_i) \quad \mathcal{S}(\tilde x, \tilde x_i) = - \Vert k-k_i \Vert^2 \quad \mathcal{V}(\tilde x, \tilde x_i, y_i) = W_Y(y_i) + T(k-k_1)
-     $$
+4. Remove the scaling term $d^{-1/2}$ (artifact of vanilla attention anyways) from the similarity calculation.
+   $$
+   k = W_K(\tilde x), k_i = W_K(\tilde x_i) \quad \mathcal{S}(\tilde x, \tilde x_i) = - \Vert k-k_i \Vert^2 \quad \mathcal{V}(\tilde x, \tilde x_i, y_i) = W_Y(y_i) + T(k-k_1)
+   $$
+
+### Putting it together
+
+The output of the retrieval module is then the weighted sum of the value vectors of top $m$ samples, where the similarity score determines the weights (the similarity score is bound in $[0, 1]$ since we take the L2 norm).
+
+$$
+\hat y = \text{Predictor}(\tilde x + \sum \limits_{i \in \text{top m}} \mathcal{S}(\tilde x, \tilde x_i) \cdot \mathcal{V}(\tilde x, \tilde x_i, y_i))
+$$
 
 ### Ablations
 
@@ -84,11 +90,11 @@ $$
 
 ## Findings
 
-![](/static/images/reading/tabr/comparison.png)
+![DL vs XGB Performance Comparison](/static/images/reading/tabr/comparison.png)
 
 TabR and previous DL models compared against XGB
 
-![](/static/images/reading/tabr/comparison2.png)
+![TabR vs GBDT without HPO](/static/images/reading/tabr/comparison2.png)
 
 TabR and previous DL models compared against GBDTs with and without HPO.
 
@@ -102,4 +108,6 @@ TabR and previous DL models compared against GBDTs with and without HPO.
 
 ## Resources
 
-- [Github](https://github.com/yandex-research/tabular-dl-tabr)
+- [Paper](https://openreview.net/forum?id=rhgIgTSSxW)
+- [Code](https://github.com/yandex-research/tabular-dl-tabr)
+

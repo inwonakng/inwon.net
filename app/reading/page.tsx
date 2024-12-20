@@ -31,7 +31,7 @@ export default function BlogPage() {
   return (
     <ListLayout
       posts={posts}
-      description="Very informal summaries of papers I've read"
+      description="Very informal summaries of stuff I've read"
       postGroup="reading"
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}

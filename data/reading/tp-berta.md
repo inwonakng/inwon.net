@@ -5,9 +5,10 @@ tags:
   - paper
   - deep-learning
   - machine-learning
-  - pretrained-models
+  - pretrained-model
   - tabular-data
-  - language-models
+  - language-model
+  - transfer-learning
 draft: false
 summary: Summary of the paper "Making Pre-trained Language Models Great on Tabular Prediction"
 images:
@@ -26,6 +27,8 @@ The authors propose:
 ## Approach
 
 ![Overview of approach](/static/images/reading/tp-berta/overview.png)
+
+> [!image/Overview of approach]
 
 **Relative Magnitude Tokens**:
 
@@ -52,9 +55,10 @@ $$
 - IFA is good.
 - GBDTs are still better when most features are numerical.
 - But TP-BERT shines on categorical.
+  > [!question]
+  > Why could this be? TabPFN shows better performance on numerical-dominated features.
 - XGB requires more optimization -- Catboost offers better out-of-the-box performance.
 
 ## Resources
 
 - [Code](https://github.com/jyansir/tp-berta)
-

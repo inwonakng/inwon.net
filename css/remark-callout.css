@@ -151,3 +151,11 @@
   color: var(--color-done-fg);
   color: var(--fgColor-done,var(--color-done-fg))
 }
+
+.markdown-alert.markdown-alert-image {
+  border-left-color: var(--borderColor-attention-emphasis,var(--color-attention-emphasis))
+}
+.markdown-alert.markdown-alert-image .markdown-alert-title {
+  color: var(--color-attention-fg);
+  color: var(--fgColor-attention,var(--color-attention-fg))
+}

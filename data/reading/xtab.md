@@ -1,5 +1,5 @@
 ---
-title: "XTab: Cross-table Pretraining for Tabular Transformers"
+title: 'XTab: Cross-table Pretraining for Tabular Transformers'
 tags:
   - paper
   - tabular-data
@@ -20,6 +20,8 @@ Use FT-Transformer architecture to learn dataset-specific embeddings and a **sha
 
 ![Framework overview](/static/images/reading/xtab/overview.png)
 
+> [!image/Overview of the XTab framework]
+
 ### Main Idea
 
 - Train a _shared backbone_ (transformer stack) that can handle arbitrary embedding representation of tables.
@@ -30,22 +32,24 @@ Use FT-Transformer architecture to learn dataset-specific embeddings and a **sha
 - Main: Classification
 - Auxiliary: Reconstruction, Contrastive, Supervised (classification)
 
-### Experiments
-
-- 3 Types of backbones (FT-Transformer, FastFormer, Saint-V)
-- Datasets from [OpenML-AutoML Benchmark](https://openml.github.io/automlbenchmark/)
-  - 52 datasets for pre-training and 52 for fine-tuning/inference.
-- Baselines:
-  - Tree-based: Random Forest, XGBoost, LightGBM, CatBoost
-  - NN: Autogluon
-  - Transformer: FT-Transformer
-
 ### Input Transformation
 
 - **categorical**: one-hot encoding and embedding lookup table.
 - **continuous**: single embedding and scale by value.
 
 ## Findings
+
+### Experiments
+
+> [!setting]
+>
+> - 3 Types of backbones (FT-Transformer, FastFormer, Saint-V)
+> - Datasets from [OpenML-AutoML Benchmark](https://openml.github.io/automlbenchmark/)
+>   - 52 datasets for pre-training and 52 for fine-tuning/inference.
+> - Baselines:
+>   - Tree-based: Random Forest, XGBoost, LightGBM, CatBoost
+>   - NN: Autogluon
+>   - Transformer: FT-Transformer
 
 - Cross-table pre-training shows improved performance compared to single-table training.
   - Ablate with same FT-Transformer structure.
@@ -56,4 +60,3 @@ Use FT-Transformer architecture to learn dataset-specific embeddings and a **sha
 
 - [Paper](https://proceedings.mlr.press/v202/zhu23k/zhu23k.pdf)
 - [Code](https://github.com/BingzhaoZhu/XTab)
-
