@@ -79,9 +79,10 @@ Instead, the authors propose to pre-compute the $k$NN context to approximate the
     > [!intuition]
     > Features values in tabular datasets can be semantically meaningful. Thus a distance metric that decomposes over individual features, i.e. $d(x, x') = \sum_{i} d(x_i, x_i')$ can be more effective than a learned distance metric.
 - Using the local context is better than using the global context.
-  - Instead of a single randomly-sampled context, compare against variations that try to use the full data for a _global_ context.
+  - Instead of a single randomly-sampled context, compare against variations that try to use the full data for a *global* context.
     - Compared against random ensemble and ensemble with no overlap.
-- When not fine-tuning, $k$ does not matter as much. But when fine-tuning (LocalPFN), more $k$ can be better.
+  - When not fine-tuning (TabPFN + $k$NN), $k$ does not matter as much. But when fine-tuning (LocalPFN), more $k$ can be better.
+  - $k$NN is better than data distillation[^2]
 
 \*: The authors define a proxy for complexity as the **difference between the lowest and highest performer**.
 
@@ -91,3 +92,5 @@ Instead, the authors propose to pre-compute the $k$NN context to approximate the
 - [Layer6 AI blog post](https://layer6.ai/introducing-localpfn-to-improve-tabular-foundation-models/)
 
 [^1]: McElfresh, Duncan, Sujay Khandagale, Jonathan Valverde, Vishak Prasad C, Ganesh Ramakrishnan, Micah Goldblum, and Colin White. "When do neural nets outperform boosted trees on tabular data?." Advances in Neural Information Processing Systems 36 (2024).
+[^2]: Ma, Junwei, Valentin Thomas, Guangwei Yu, and Anthony Caterini. "In-Context Data Distillation with TabPFN." arXiv preprint arXiv:2402.06971 (2024).
+
