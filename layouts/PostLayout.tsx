@@ -42,7 +42,7 @@ export default function PostLayout({
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
   return (
-    <div className="mx-auto w-full px-4">
+    <div className="mx-auto w-full">
       <ScrollTopAndComment />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">

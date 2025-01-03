@@ -31,7 +31,7 @@ export default function BlogPage() {
   return (
     <ListLayout
       title="All Posts"
-      description="My unorganized notes on programming tips, projects, etc."
+      description="Stuff on programming tips, projects, etc."
       posts={posts}
       postGroup="blog"
       initialDisplayPosts={initialDisplayPosts}

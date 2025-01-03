@@ -159,3 +159,12 @@
   color: var(--color-attention-fg);
   color: var(--fgColor-attention,var(--color-attention-fg))
 }
+
+
+.markdown-alert.markdown-alert-table {
+  border-left-color: var(--borderColor-attention-emphasis,var(--color-attention-emphasis))
+}
+.markdown-alert.markdown-alert-table .markdown-alert-title {
+  color: var(--color-attention-fg);
+  color: var(--fgColor-attention,var(--color-attention-fg))
+}

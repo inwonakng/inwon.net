@@ -7,6 +7,7 @@ import { genPageMetadata } from 'app/seo'
 export const metadata = genPageMetadata({ title: 'About' })
 
 export default function Page() {
+  // ignore others and just select default one to show.
   const author = allAuthors.find((p) => p.slug === 'default') as Author
   const mainContent = coreContent(author)
 

@@ -5,10 +5,10 @@ import type { Plugin } from 'unified'
 import type { Root, PhrasingContent } from 'mdast'
 
 const alertRegex =
-  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG|MOTIVATION|INTUITION|SETTING|IMAGE)\]/i
+  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG|MOTIVATION|INTUITION|SETTING|IMAGE|TABLE)\]/i
 
 const alertLegacyRegex =
-  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG|MOTIVATION|INTUITION|SETTING|IMAGE)(\/.*)?\]/i
+  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG|MOTIVATION|INTUITION|SETTING|IMAGE|TABLE)(\/.*)?\]/i
 
 type Option = {
   /**
@@ -135,6 +135,7 @@ type IconType =
   | 'intuition'
   | 'setting'
   | 'image'
+  | 'table'
 
 type IconData = {
   hName: string
@@ -356,6 +357,35 @@ const iconData: Record<IconType, IconData[]> = {
       hProperties: {
         d: 'm21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21',
       },
+    },
+  ],
+  table: [
+    {
+      hName: 'rect',
+      hProperties: {
+        width: '18',
+        height: '18',
+        x: '3',
+        y: '3',
+        rx: '2',
+        ry: '2',
+      },
+    },
+    {
+      hName: 'line',
+      hProperties: { x1: '3', x2: '21', y1: '9', y2: '9' },
+    },
+    {
+      hName: 'line',
+      hProperties: { x1: '3', x2: '21', y1: '15', y2: '15' },
+    },
+    {
+      hName: 'line',
+      hProperties: { x1: '9', x2: '9', y1: '9', y2: '21' },
+    },
+    {
+      hName: 'line',
+      hProperties: { x1: '15', x2: '15', y1: '9', y2: '21' },
     },
   ],
 }
