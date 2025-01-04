@@ -10,8 +10,8 @@ tags:
 date: 2024-11-10
 draft: false
 images:
-  - /static/images/reading/tablegpt2/semantic-table-encoder.png
-  - /static/images/reading/tablegpt2/agentic-framework.png
+  - /reading/_images/tablegpt2/semantic-table-encoder.png
+  - /reading/_images/tablegpt2/agentic-framework.png
 ---
 
 ## Summary
@@ -22,7 +22,7 @@ A summary of TableGPT2, a fine-tuned Qwen2 based model for native tabular data p
 
 ### Semantic Table Encoder
 
-Similar to vision-language models, the authors opt to use a Q-former style adapter framework for aligning representation of table columns to the language model.
+Similar to vision-language models, the authors opt to use a Q-former[^1] style adapter framework for aligning representation of table columns to the language model.
 
 ![Semantic Table Encoder](/static/images/reading/tablegpt2/semantic-table-encoder.png)
 
@@ -132,13 +132,13 @@ Human reviewers and LLMs are combined to produce the final metric.
 - TableGPT2 outperforms other models on RealTabBench.
 - But it also retains most of its general-task (non-table related) capabilities.
 
-The authors exclude TableLlama[^1] because it loses general-task capabilities.
+The authors exclude TableLlama[^2] because it loses general-task capabilities.
 
 ## Resources
 
 - [Paper](https://arxiv.org/abs/2411.02059)
 - [Code -- TableGPT agent](https://github.com/tablegpt/tablegpt-agent)
 
-[^1]: Zhang, Tianshu, Xiang Yue, Yifei Li, and Huan Sun. "Tablellama: Towards open large generalist models for tables." arXiv preprint arXiv:2311.09206 (2023). [Huggingface link](https://huggingface.co/osunlp/TableLlama)
-
+[^1]: Li, Junnan, Dongxu Li, Silvio Savarese, and Steven Hoi. "Blip-2: Bootstrapping language-image pre-training with frozen image encoders and large language models." In International conference on machine learning, pp. 19730-19742. PMLR, 2023.
+[^2]: Zhang, Tianshu, Xiang Yue, Yifei Li, and Huan Sun. "Tablellama: Towards open large generalist models for tables." arXiv preprint arXiv:2311.09206 (2023). [Huggingface link](https://huggingface.co/osunlp/TableLlama)
 

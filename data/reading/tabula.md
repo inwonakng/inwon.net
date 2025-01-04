@@ -44,7 +44,7 @@ Note that the serialization includes the column names as well as the possible va
 
 ![Row Causal Tabular Mask](/static/images/reading/tabula/row-causal-mask.png)
 
-> [!image/Row Cauasl Mask]
+> [!image/Row Causal Mask]
 > Similar to causal masks used in language models, the row causal mask is used to ensure that the attention mechanism is only applied to cells from the same row.
 
 The authors opt to use what they call "row causal mask" to prevent tokens from different rows to attend to each other. This is similar to the causal mask used in language models, but applied to the rows of the table. I think something similar existed in a while for batching multiple sentences [the 4d attention stuff](https://huggingface.co/blog/poedator/4d-masks). This also allows them to pack multiple sequences into **one input**, maximizing the use of the context at each input.
