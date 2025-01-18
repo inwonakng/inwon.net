@@ -1,0 +1,1 @@
+/Users/inwon/dotfiles/tex/katex-config.js

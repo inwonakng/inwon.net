@@ -24,9 +24,12 @@ import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePresetMinify from 'rehype-preset-minify'
 import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from './utils/contentlayer'
+import { macros } from './katex-config.js'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
+
+console.log(macros)
 
 // heroicon mini link
 const icon = fromHtmlIsomorphic(
@@ -205,7 +208,7 @@ export default makeSource({
           content: icon,
         },
       ],
-      rehypeKatex,
+      [rehypeKatex, { macros }],
       rehypeKatexNoTranslate,
       [rehypeCitation, { path: path.join(root, 'data') }],
       [rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
