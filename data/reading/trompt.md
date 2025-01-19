@@ -2,7 +2,7 @@
 title: 'Trompt: Towards a Better Deep Neural Network for Tabular Data'
 draft: false
 tags:
-  - paper
+  - paper-reading
   - language-model
   - pretrained-model
   - prompt-tuning

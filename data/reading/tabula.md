@@ -3,7 +3,7 @@ title: "Large Scale Transfer Learning for Tabular Data via Language Modeling"
 summary: 'Summary of the paper "Large Scale Transfer Learning for Tabular Data via Language Modeling"'
 draft: false
 tags:
-  - paper
+  - paper-reading
   - tabular-data
   - deep-learning
   - language-model

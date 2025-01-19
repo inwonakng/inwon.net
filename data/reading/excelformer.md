@@ -2,7 +2,7 @@
 title: 'Can a Deep Learning Model be a Sure Bet for Tabular Prediction?'
 date: 2024-12-17
 tags:
-  - paper
+  - paper-reading
   - deep-learning
   - machine-learning
   - model-architecture

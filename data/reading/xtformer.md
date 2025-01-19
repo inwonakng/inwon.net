@@ -1,7 +1,7 @@
 ---
 title: "Cross-Table Pretraining towards a Universal Function Space for Heterogeneous Tabular Data"
 tags:
-  - paper
+  - paper-reading
   - deep-learning
   - machine-learning
   - meta-learning

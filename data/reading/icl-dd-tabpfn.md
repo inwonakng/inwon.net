@@ -1,7 +1,7 @@
 ---
 title: "In-Context Data Distillation with TabPFN"
 tags:
-  - paper
+  - paper-reading
   - tabular-data
   - machine-learning
   - deep-learning

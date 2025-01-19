@@ -31,7 +31,7 @@ Getting this access will also allow you to access Meta research's [huggingface r
 
 ### Downloading with WebUI
 
-![](/static/blog/images/open-source-llm-use-and-fine-tune/1-loading-model.png)
+![](/static/images/blog/open-source-llm-use-and-fine-tune/1-loading-model.png)
 
 1. Go to the model tab.
 2. Specify the model name (and/or branch) in the download section.
@@ -62,7 +62,7 @@ python server.py \
 
 ## Enabling the API Extension in WebUI
 
-![](/static/images/open-source-llm-use-and-fine-tune/2-enable-extension.png)
+![](/static/images/blog/open-source-llm-use-and-fine-tune/2-enable-extension.png)
 
 1. Go to session tab.
 2. Select desired extensions (API, OpenAI APi, etc.).
@@ -160,7 +160,7 @@ print(model_output)
 
 ### Training with WebUI
 
-![](/static/images/open-source-llm-use-and-fine-tune/3-train-lora.png)
+![](/static/images/blog/open-source-llm-use-and-fine-tune/3-train-lora.png)
 
 1. Go to training tab.
 2. Choose a LoRA to copy the weight shapes from.
@@ -308,7 +308,7 @@ trainer.model.save_pretrained('ft-college-confidential')
 
 ### Loading with WebUI
 
-![](/static/images/open-source-llm-use-and-fine-tune/4-loading-lora.png)
+![](/static/images/blog/open-source-llm-use-and-fine-tune/4-loading-lora.png)
 
 Once your model is trained, you can load the LoRA model on top of your base model by selecting it from the `model` tab of the WebUI.
 If your LoRA was not trained through the WebUI, make sure that the folder outputed by `.save_pretrained` method is placed under the `loras/` directory of the WebUI directory so it can be detected.

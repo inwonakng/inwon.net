@@ -2,7 +2,7 @@
 title: "TransTab: Learning Transferable Tabular Transformers Across Tables"
 date: 2024-10-08
 tags:
-  - paper
+  - paper-reading
   - tabular-data
   - model-architecture
   - deep-learning
