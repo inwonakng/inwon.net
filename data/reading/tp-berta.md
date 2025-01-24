@@ -2,7 +2,7 @@
 title: 'Making Pre-trained Language Models Great on Tabular Prediction'
 date: '2024-11-28'
 tags:
-  - paper-reading
+  - paper-summary
   - deep-learning
   - machine-learning
   - pretrained-model

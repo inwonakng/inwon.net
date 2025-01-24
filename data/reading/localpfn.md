@@ -1,7 +1,7 @@
 ---
 title: 'Retrieval & Fine-Tuning for In-Context Tabular Models'
 tags:
-  - paper-reading
+  - paper-summary
   - meta-learning
   - tabular-data
   - deep-learning

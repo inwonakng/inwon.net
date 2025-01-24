@@ -2,7 +2,7 @@
 title: "TableGPT2: A Large Multimodal Model with Tabular Data Integration"
 summary: 'Summary of the paper "TableGPT2: A Large Multimodal Model with Tabular Data Integration"'
 tags:
-  - paper-reading
+  - paper-summary
   - tabular-data
   - language-model
   - deep-learning

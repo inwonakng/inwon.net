@@ -2,10 +2,13 @@
 title: 'TabR: Tabular Deep Learning Meets Nearest Neighbors'
 date: '2024-12-12'
 tags:
-  - paper-reading
-  - tabular-data
+  - paper-summary
   - deep-learning
+  - machine-learning
   - meta-learning
+  - model-architecture
+  - retrieval
+  - tabular-data
 draft: false
 summary: Summary of the TabR paper
 images:

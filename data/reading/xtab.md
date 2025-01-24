@@ -1,7 +1,7 @@
 ---
 title: 'XTab: Cross-table Pretraining for Tabular Transformers'
 tags:
-  - paper-reading
+  - paper-summary
   - tabular-data
   - deep-learning
   - transfer-learning
