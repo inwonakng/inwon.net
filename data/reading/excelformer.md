@@ -1,14 +1,16 @@
 ---
-title: 'Can a Deep Learning Model be a Sure Bet for Tabular Prediction?'
-date: 2024-12-17
+title: "Can a Deep Learning Model be a Sure Bet for Tabular Prediction?"
+summary: ""
 tags:
   - paper-summary
   - deep-learning
   - machine-learning
   - model-architecture
   - tabular-data
+date: 2024-12-11
 draft: false
-summary: Summary of the paper "Can a Deep Learning Model be a Sure Bet for Tabular Prediction?"
+aliases:
+  - ExcelFormer
 images:
   - /static/images/reading/excelformer/overview.png
   - /static/images/reading/excelformer/hid-feat-mix.png
@@ -50,7 +52,7 @@ where $I(\bf{f}_i)$ is the importance of the $i$-th feature. In other words, thi
 
 ### Interpolation-based data-augmentation
 
-![Picture of HID and FEAT mix](/static/images/reading/excelformer/hid-feat-mix.png)
+![Illustration of HID and FEAT mix](/static/images/reading/excelformer/hid-feat-mix.png)
 
 > [!image/Illustration of HID and FEAT mix]
 > HID-mix operates on the embedding level, while FEAT-mix operates on the feature level.
@@ -66,7 +68,7 @@ $$
 \end{gather}
 $$
 
-where $S_H \in \{0,1\}^{f \times d}$ is a stack of binary masks $s_h:S_H = [s_h, s_h,..., s_h ]^T$, where $\sum s_h = \left\lfloor \lambda_H \cdot d \right\rfloor$ for each row vector $s_h$, and $\mathbb{1}$ is a $f \times d$ matrix of $1$s. In other words, $S_H$ masks out $\left\lfloor \lambda_H \cdot d \right\rfloor$ entries of each row.
+where $S_H \in \{0,1\}^{f \times d}$ is a stack of binary masks $s_h$, $S_H = [s_h, s_h,..., s_h ]^T$, where $\sum s_h = \floor{\lambda_H \cdot d}$ for each row vector $s_h$, and $\mathbb{1}$ is a $f \times d$ matrix of $1$s. In other words, $S_H$ masks out $\floor{\lambda_H \cdot d}$ entries of each row.
 
 > [!intuition]
 > Since each embedding element is projected from a scalar feature value, we can consider each embedding dimension as a distinct "profile" version of input data. Thus, Hid-Mix regularizes the classifier to behave like a bagging predictor.
@@ -82,7 +84,7 @@ $$
 \end{gather}
 $$
 
-where $s_F \in \{0,1\}^{f}$ is a binary mask vector where $\sum s_F = \left\lfloor \lambda_F \cdot f \right\rfloor$, $\mathbb{1}_F$ is a $f$ dimensional vector of $1$s, and $\Lambda$ is a scalar.
+where $s_F \in \{0,1\}^{f}$ is a binary mask vector where $\sum s_F = \floor{\lambda_F \cdot f}$, $\mathbb{1}_F$ is a $f$ dimensional vector of $1$s, and $\Lambda$ is a scalar.
 
 If we set $\Lambda = \lambda_F$, this equivalent to cutmix[^1].
 
@@ -122,3 +124,4 @@ However, why they do this is not very clearly motivated.
 - [Github](https://github.com/whatashot/excelformer)
 
 [^1]: Yun, Sangdoo, Dongyoon Han, Seong Joon Oh, Sanghyuk Chun, Junsuk Choe, and Youngjoon Yoo. "Cutmix: Regularization strategy to train strong classifiers with localizable features." In Proceedings of the IEEE/CVF international conference on computer vision, pp. 6023-6032. 2019.
+

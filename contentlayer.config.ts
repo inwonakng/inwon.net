@@ -29,6 +29,7 @@ import { macros } from './katex-config.js'
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
 
+console.log("katex macros")
 console.log(macros)
 
 // heroicon mini link
