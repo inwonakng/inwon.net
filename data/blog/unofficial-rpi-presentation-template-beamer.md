@@ -8,6 +8,9 @@ tags:
 draft: false
 summary: Unofficial RPI presentation template for beamer.
 images: 
+  - /static/images/blog/unofficial-rpi-presentation-template/overleaf-compiler.png
+  - /static/images/blog/unofficial-rpi-presentation-template/overleaf-menu.png
+  - /static/images/blog/unofficial-rpi-presentation-template/plain.png
   - /static/images/blog/unofficial-rpi-presentation-template/title.png
   - /static/images/blog/unofficial-rpi-presentation-template/plain.png
   - /static/images/blog/unofficial-rpi-presentation-template/list.png
@@ -23,6 +26,24 @@ images:
 A beamer presentation template I made using RPI colors and official logo.
 
 [Source for RPI color and logo](https://scer.rpi.edu/brand-in-action/colors)
+
+## Usage
+
+Copy the `beamerthemeRPI.sty` file to the directory of your `.tex` file.
+Also copy the `logos` to the same directory (that the `tex` file lives in).
+This is required for because the logos need to be rendered at the footer of each slide.
+
+You also need to use `lualatex` compiler instead of `pdflatex` because of the font. (Arial doesn't work on pdflatex?)
+
+If you are on overleaf, you can do this:
+
+![](/static/images/blog/unofficial-rpi-presentation-template/overleaf-menu.png)
+
+First open the menu
+
+![](/static/images/blog/unofficial-rpi-presentation-template/overleaf-compiler.png)
+
+And then select either `LuaLaTeX` or `XeLaTeX` as the compiler.
 
 ## Previews
 
