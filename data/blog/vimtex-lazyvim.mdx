@@ -135,12 +135,9 @@ return {
 The config function here ensures that my custom snippets appear first,
 so that I can override default snippets for common stuff like `figure` or `table`.
 
-Note that I am using the relative path. 
-Since everything under `lua` is loaded by nvim, this ends up pointing to `~/config/nvim/lua/snippets`.
+Note that I am using the relative path and am calling my custom config before the "empty" `lazy_load` call. This is because I want to load my custom snippets first, and then dependency snippets (in this case `rafamadriz/friendly-snippets`) after. And since everything under `lua` is loaded by nvim, this ends up pointing to `~/config/nvim/lua/snippets`.
 
-Inside that directory, you can create a snippets file that uses vscode style snippets.
-In order to do this, you need to have a `package.json` file at the root of the snippets directory.
-You can also use subdirectories to maintain snippets for different purposes.
+Inside that directory, you can create a snippets file that uses vscode style snippets. In order to do this, you need to have a `package.json` file at the root of the snippets directory. You can also use subdirectories to maintain snippets for different purposes.
 
 `~/config/nvim/lua/snippets/package.json`
 ```json
