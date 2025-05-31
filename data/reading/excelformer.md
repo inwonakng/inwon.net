@@ -9,8 +9,6 @@ tags:
   - tabular-data
 date: 2024-12-11
 draft: false
-aliases:
-  - ExcelFormer
 images:
   - /static/images/reading/excelformer/overview.png
   - /static/images/reading/excelformer/hid-feat-mix.png

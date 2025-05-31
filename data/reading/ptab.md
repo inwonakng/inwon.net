@@ -10,8 +10,6 @@ tags:
   - tabular-data
 date: 2025-01-13
 draft: false
-aliases:
-  - PTab
 images:
   - /static/images/reading/ptab/overview.png
 ---
