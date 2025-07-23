@@ -7,8 +7,8 @@ tags:
   - model-architecture
   - tabular-data
 date: 2025-07-23
-summary: ""
-title: "ConTextTab: A Semantics-Aware Tabular In-Context Learner"
+summary: ''
+title: 'ConTextTab: A Semantics-Aware Tabular In-Context Learner'
 images:
   - /reading/_images/contexttab/overview.png
 ---
@@ -100,7 +100,4 @@ The row-wise attention mechanism is replaced with a set transformer([^1]), which
 - [Code](https://github.com/SAP-samples/contexttab)
 
 [^1]: Set transformer: A framework for attention-based permutation-invariant neural networks. ICML 2019. [pdf link](http://proceedings.mlr.press/v97/lee19d/lee19d.pdf)
-
 [^2]: Large scale transfer learning for tabular data via language modeling. Neurips 2024. [pdf link](https://proceedings.neurips.cc/paper_files/paper/2024/hash/4fd5cfd2e31bebbccfa5ffa354c04bdc-Abstract-Conference.html)
-
-
