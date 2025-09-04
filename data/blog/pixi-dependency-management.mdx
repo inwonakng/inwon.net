@@ -1,0 +1,105 @@
+---
+title: Managing dependencies with pixi
+date: '2025-09-04'
+tags:
+  - pixi
+  - venv
+  - python
+draft: false
+summary: My experience so far using pixi for dependency management.
+images: []
+---
+
+## What is pixi?
+
+[pixi](https://pixi.sh/latest/) is a relatively new dependency management tool for python (version 0.54.1 as of writing this article). If you are familiar with [uv](https://docs.astral.sh/uv/), you will notice that this feels like `uv`, except now with conda backend. You can think of it as a management for conda environments, but now with a different way of thinking.
+
+## Why use it?
+
+Conda is a great tool with a very robust ecosystem. However, the solver can be slow at times, and it can be a struggle to figure out how to set up a conda environment for a project -- will it be shared? how do I run jobs with the environment using a job scheduler? etc. Of course, these are all solvable problems. But sometimes you just don't want to bother.
+
+For example, if I have a project that uses conda, I will have to make sure to activate that environment before running anything. Pixi addresses this by looking for the closest `pixi.toml` or `pyproject.toml` file in the current directory to automatically resolve and activate the environment. This is similar to how `uv` works, and it is very convenient.
+
+So if you had to do this:
+
+```bash
+conda create -n MYENV python=3.10 -y;
+conda activate MYENV;
+pip install -r requirements.txt;
+
+# now to run stuff later
+conda activate MYENV;
+python my_script.py
+```
+
+Now you can do this:
+
+```bash
+pixi init MYPROJ
+pixi add XYZ
+# and to run stuff
+pixi run python my_script.py
+```
+
+So instead of runnig a python command directly, you let pixi do the running for you. There are other benefits as well. For example, both `uv` and `pixi` maintain a lockfile that records the versions of all packages installed, as well as a reproducible instructions for environment (through `pyproject.toml` or `pixi.toml`). If you have used `npm` before, this should feel very familiar. This means that you now don't have to write down every major package you install -- it will be recorded automatically. The backends for this hasn't changed. It's still conda and pip under the hood, but now we are approaching this from a project-based view.
+
+## Why not UV?
+
+Like I noted, this feels quite similar to `uv`. So why not just use `uv`? The main reason is that `uv` uses `venv` as the backend, which means that it uses the system python -- this is the same reason people use `conda` instead of `venv`. This can be a problem if you need a specific version of python for your project. With pixi, you can specify the python version in the `pixi.toml` file, and it will create a conda environment with that version of python.
+
+## Starting commands
+
+**Starting a project**
+
+if already created, run `pixi init . ` inside.
+Or run `pixi init <project-name>` to create a new directory.
+
+**Running code**
+
+instead of just `python <file>`, run `pixi run <file>` to ensure all dependencies are installed.
+
+**Entering a shell**
+
+Run `pixi shell` to enter a shell with all dependencies installed. This is equivalent to using `conda activate <env>`. (so the venv stuff is prepended to your PATH, meaning we will look there first for python and pip). So that means once you do this, you can do the `python XXX` stuff. Of course, do **not** do `pip install XXX` here, as this will not be recorded in the lockfile.
+
+**Adding dependencies**
+
+- **Regular packages**: `pixi add <package-name>` (e.g. `pixi add requests`)
+- **From git repo** : `pixi add --pypi "git+XXXXX@main"`
+  - Not `--git`!
+
+**Best practice**
+
+- If installing a _simple_ package, just use `--pypi` to skip conda resolving.
+  - Conda should only be used for packages that have **binaries** (e.g. numpy, pandas, etc.)
+  - If you have an linux x64 machine, you probably don't even need to use conda at all.
+
+**Managing a python package**
+
+- If you are making an installable pacakge, you probably want to use `pyproject.toml` instead of `pixi.toml`.
+  - You can't use both! (pixi will ignore one of them, probably `pyproject.toml`)
+- you can do this by running `pixi init . --format pyproject` instead of the regular init command.
+
+**Removing dependencies**
+
+- If you want to reset a package or re-install it, you can remove its entry from `pixi.lock` file and run `pixi install` again. Similar to how `npm install` works, this will 'install' the entire project again (except using cache if possible).
+
+## My thoughts so far
+
+Pixi has a lot more features than I have shared here. But my use is pretty limited and this is good enough. It feels pretty portable, and I especially like the automatic dependency file management.
+
+## No more conda?
+
+Absolutely not. pixi doesn't support PowerPC architectures and is still a very young project. Conda will still be a good tool, but when applicable, pixi is a good alternative.
+In addition, it's easier to install global binaries using conda. You can also do this with `--global` flag in pixi, but I haven't dug too deep into it.
+
+---
+
+> ![tip/Installing user-level software using conda]
+>
+> 1. First create `~/.local/bin` if it doesn't exist.
+> 2. in your `~/.bashrc` or `~/.zshrc`, add `export PATH="$HOME/.local/bin:$PATH"` to the end of the file.
+>    - If you don't know what this does, we are telling the shell to look for binaries in `~/.local/bin` first before looking anywhere else.
+> 3. Now install the package you want using conda, for example `conda install -n base git -y`.
+> 4. Now create a symlink to the binary in `~/.local/bin`, for example `ln -sf {YOUR_CONDA_PATH}/bin/git $HOME/.local/bin`.
+> 5. Now you should be able to run `git` without any issues, and it will use the conda-installed version. (you can check this by running `which git`. it should say something like `~/.local/bin/git`)
