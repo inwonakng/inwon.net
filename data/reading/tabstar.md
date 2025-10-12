@@ -44,12 +44,10 @@ allows for cross-table training without learning task-specific heads.
 
 **Classification**
 
-- The sequence, where each token is a cell, is then passed through a 6-layer
-  transformer that maps the "interaction" between the cells.
-- The label tokens of the resulting sequence are then used as input to a linear
-  classifier head.
-  - The single linear layer turns each label token into a logit.
-  - The labels are added to the input sequence after all the row information.
+- The sequence, where each token is a cell, is then passed through a 6-layer transformer that maps the "interaction" between the cells.
+  - All possible labels are added to the input sequence after all the row information. This allows each label to contain the "context" of the input.
+- The label tokens of the resulting sequence are then used as input to a linear classifier head.
+  - The single linear layer outputs the "score" for each label class.
 
 ### Experiments
 
