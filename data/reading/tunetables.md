@@ -21,7 +21,7 @@ The authors propose a prompt-tuning based method to improve the performance of T
 
 ![Overview of approach](/static/images/reading/tunetables/overview.png)
 
-> [!image/Overview of proposed approach]
+> [!image] Overview of proposed approach
 > The proposed approach adds a learnable soft-prompt on top of the TabPFN model. The authors find that the original data may not even be necessary in some cases, and using the soft-prompts alone will give good performance.
 
 ### Drawbacks of TabPFN
@@ -32,7 +32,7 @@ The authors propose a prompt-tuning based method to improve the performance of T
 
 ![Scalability comparison](/static/images/reading/tunetables/compare-scaling.png)
 
-> [!image/Comparison of scaling between TabPFN, CatBoost and TuneTables]
+> [!image] Comparison of scaling between TabPFN, CatBoost and TuneTables
 > The box in the lower left corner represents the *comfort zone* for TabPFN (\<3000 data points and \<100 features). The first plot shows that CatBoost dominates in the high-scale regime, while the secon dplot shows that TuneTables is more comparable. The third plot shows that TuneTables also outperforms TabPFN in this regime.
 
 ### Remedies for Scalability

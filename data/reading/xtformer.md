@@ -25,7 +25,7 @@ images:
 
 ![Overview](/static/images/reading/xtformer/overview.png)
 
-> [!image/Architecture overview of XTFormer]
+> [!image] Architecture overview of XTFormer
 
 Vanilla attention:
 

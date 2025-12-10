@@ -1,0 +1,134 @@
+---
+title: Midnight Commander -- Transferring Files via (S)FTP and proxies
+date: '2025-12-08'
+tags:
+  - linux
+draft: false
+summary: Quick introduction and guide to using hydra for management configuration in large scale experiments.
+images:
+  - /static/images/blog/midnight-commander-ftp/sample.png
+---
+
+## What is Midnight Commander?
+
+Midnight Commander (`mc`) is a terminal based file manager with a two-panel interface. It has support for various protocols including FTP, SFTP, SMB, and more. It also has a built-in text editor and viewer, making it a versatile tool for managing files on both local and remote systems.
+
+![Midnight Commander SFTP over Proxy Example](/static/images/blog/midnight-commander-ftp/sample.png)
+
+## Configuration
+
+Running `mc --datadir` should show you were the built-in configurations files are stored. And running `mc --datadir-info` should give you additional information.
+
+### Theming
+
+I'm just using catppuccin (the default theme uses unreadable highlight colors for me) theme available [here](https://github.com/catppuccin/mc).
+
+## Useful tips
+
+Here I'm documenting some stuff that was useful for me. There are also many great resources online, for example [this blog post](https://klimer.eu/2015/05/01/use-midnight-commander-like-a-pro/) has a great list of keys you can use. You can also use `ESC` or `ctrl-[` as prefix keys instead of the F-keys and alt keys.
+
+### SFTP with proxies
+
+Instead of using the built-in SFTP support, use `cd sh://{SSH_TARGET}/~/` where `SSH_TARGET` is the host defined in your `~/.ssh/config`.
+
+### Navigate using arrows
+
+Set `navigate_with_arrows=true` in your `~/.config/mc/ini` file.
+
+### (Mac only) Register HEIC as image file
+
+```
+# ~/.config/mc/mc.ext, OR you can open this by running `ESC 9 c e` (edit file extension config)
+# HEIC/HEIF images: Use Shell match by extension since file(1) returns
+# "ISO Media, HEIF Image..." instead of starting with "HEIC"
+# Also keep Type match as fallback for files without .heic extension
+[heic-by-shell]
+Shell=.heic
+ShellIgnoreCase=true
+Include=image
+
+[heic-by-type]
+Type=^ISO Media.*HEIF
+Include=image
+```
+
+### My keymaps
+
+```
+[filemanager]
+ChangePanel = alt-tab
+SplitVertHoriz = alt-l
+
+[help]
+Complete = tab
+
+[editor]
+Complete = tab
+
+[panel]
+PageUp = ctrl-b
+PageDown = ctrl-f
+Top = alt-g
+Bottom = alt-shift-g
+TopOnScreen = ctrl-g
+CdParentSmart = ctrl-k
+Sort = alt-o
+SortReverse = alt-shift-r
+PanelOtherCd = alt-shift-o
+
+[input]
+Clear = ctrl-c
+Complete = tab
+
+[listbox]
+PageUp = ctrl-b
+PageDown = ctrl-f
+```
+
+This config just introduces _some_ more vim-like keybindings (`ctrl-b/f` for page up/down, `ctrl-g` to go to top/bottom of panel etc). And it restores the default `tab` completion in help and editor screens (which I use a lot). I use `ctrl-p/n` for moving up/down and this is also supported by default.
+
+### Custom actions with shell scripts
+
+You can also add your custom menu to add actions like copying current path or opening current directory in OS native explorer. My example:
+
+```
+shell_patterns=0
+
+= f *.
+o       Open/Reveal in Finder
+        if [ -f "%f" ]; then open -R "%d/%f"; else open .; fi
+
+= f *.
+c       Copy current directory path to clipboard
+        pwd | pbcopy && echo "Copied to clipboard: $(pwd)"
+
+= f *.
+C       Copy current file path to clipboard
+        echo "%d/%f" | pbcopy && echo "Copied to clipboard: %d/%f"
+
+= f *.
+f       Copy current filename to clipboard
+        echo "%f" | pbcopy && echo "Copied to clipboard: %f"
+```
+
+### Adding `mc` to `tmux`
+
+Since version 3.2, tmux has introduced "popup windows", which can overlay a floating pane on top of your existing pane. You can also use this feature to create your own togglable `mc` instance
+
+```bash
+#!/bin/bash
+
+current_session=$(tmux display-message -p '#S')
+if [ "$current_session" = "mc" ]; then
+    tmux detach-client
+else
+    tmux display-popup -w 80% -h 85% -E "tmux new-session -A -s mc mc"
+fi
+```
+
+And just add this to your tmux keybindings:
+
+```
+# this binds prefix-m to toggle mc in a popup
+bind-key m run-shell "~/.tmux/scripts/toggle-mc.sh"
+```

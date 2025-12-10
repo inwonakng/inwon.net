@@ -28,7 +28,7 @@ The authors propose:
 
 ![Overview of approach](/static/images/reading/tp-berta/overview.png)
 
-> [!image/Overview of approach]
+> [!image] Overview of approach
 
 **Relative Magnitude Tokens**:
 

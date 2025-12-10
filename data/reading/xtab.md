@@ -20,7 +20,7 @@ Use FT-Transformer architecture to learn dataset-specific embeddings and a **sha
 
 ![Framework overview](/static/images/reading/xtab/overview.png)
 
-> [!image/Overview of the XTab framework]
+> [!image] Overview of the XTab framework
 
 ### Main Idea
 

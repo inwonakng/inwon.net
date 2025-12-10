@@ -26,7 +26,7 @@ Similar to vision-language models, the authors opt to use a Q-former[^1] style a
 
 ![Semantic Table Encoder](/static/images/reading/tablegpt2/semantic-table-encoder.png)
 
-> [!image/Semantic Table Encoder]
+> [!image] Semantic Table Encoder
 > A description of how the tabular data is directly encoded into tokens.
 > Embeddings from the _encoder_ (stacks of col and row-wise attention blocks with no positional embeddings) are passed through an _adapter_ that combines them into a single representation of $k$ embeddings.
 
@@ -80,7 +80,7 @@ The authors collect two types of data for training TableGPT.
 | Special Format | Specific formats, like invoice, bill, etc.                  |
 | Pre-test Task  | Forcasting, prediction projects etc.                        |
 
-> [!table/Types of tables gathered]
+> [!table] Types of tables gathered
 
 Using this, the authors use larger models (GPT4-o, LLaMA, etc.) to generate a set of _queries_ of broadly two types:
 
@@ -94,7 +94,7 @@ The authors employ a strategy they call **synthesize and refine** to generate hi
 
 ![Agentic Framework](/static/images/reading/tablegpt2/agentic-framework.png)
 
-> [!image/Agentic Framework]
+> [!image] Agentic Framework
 > A core pipeline diagram of a agent framework using TableGPT2.
 
 The authors propose an agent framework with TableGTP2. The tablular agent is able to generate code to parse/grab tables to achieve its task.

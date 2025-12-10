@@ -26,7 +26,7 @@ allows for cross-table training without learning task-specific heads.
 
 ![TabSTAR Architecture](/static/images/reading/tabstar/architecture.png)
 
-> [!image/TabSTAR Architecture]
+> [!image] TabSTAR Architecture
 
 **Verbalization**
 

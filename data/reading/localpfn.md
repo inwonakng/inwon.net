@@ -21,7 +21,7 @@ While TabPFN shows great performance in certain circumstances, it does not scale
 
 ![Architecture](/static/images/reading/localpfn/architecture.png)
 
-> [!image/Architecture]
+> [!image] Architecture
 > Description of the proposed architecture.
 > a). Perform $k$NN for $x_{\text{qy}}$ in $\mathcal{D}_{\text{train}}$ as input to the TabPFN classifier.
 > b). Use approximation of $k$NN (pre-computed by randomly selected points) to improve efficiency.
@@ -54,7 +54,7 @@ Instead, the authors propose to pre-compute the $k$NN context to approximate the
 
 ![Toy dataset comparison between TabPFN and LoCalPFN](/static/images/reading/localpfn/tabpfn-compare.png)
 
-> [!image/Comarison between TabPFN and LocalPFN on a toy dataset]
+> [!image] Comarison between TabPFN and LocalPFN on a toy dataset
 > a). As the complexity/size of the dataset increases, vanilla TabPFN struggles.
 > b). Using _local context_ as input instead of the whole training set improves performance.
 > c). Performance vs. $k$. Large $k$ tends to "oversmooth" and suffer from high bias/underfitting, while small $k$ enables more complex decision boundaries but can suffer from more variance/overfitting.

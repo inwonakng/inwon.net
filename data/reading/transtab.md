@@ -22,7 +22,7 @@ This work proposes a method to convert table rows into a sequence of token-embed
 
 ![Overview of approach](/static/images/reading/transtab/overview.png)
 
-> [!image/Overview of the approach]
+> [!image] Overview of the approach
 
 ### Input transformation
 
@@ -50,7 +50,7 @@ where $\bf{g}^l = \sigma(\bf{Z}_{\text{att}}^l \bf{w}^G) \in [0,1]^n$ is a token
 
 ![Diagram of supervised and self-supervised VPCL](/static/images/reading/transtab/vpcl.png)
 
-> [!image/Diagram of supervised and self-supervised VPCL]
+> [!image] Diagram of supervised and self-supervised VPCL
 > Top shows the self-supervised and the bottom shows the supervised variant.
 
 #### Self-Supervised VPCL

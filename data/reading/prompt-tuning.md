@@ -22,7 +22,7 @@ This paper proposes prompt-tuning, learning a set of soft-prompts in the latent 
 
 ![Comparison against model tuning](/static/images/reading/prompt-tuning/compare-model-tuning.png)
 
-> [!image/Comparison of prompt-tuning vs traditional model-tuning]
+> [!image] Comparison of prompt-tuning vs traditional model-tuning
 > Model tuning ends up creating different _versions_ of the model specialized for each task, while prompt-tuning maintains one base model and only learns the task specialized prompts.
 
 The authors examine prompt-tuning by transforming a T5 model into a language model (instead of the original reconstruction task).

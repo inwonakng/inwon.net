@@ -32,11 +32,11 @@ The paper presents a retrieval-augmented generation (RAG) inspired model for tab
 
 ![Mechanism](/static/images/reading/tabr/mechanism.png)
 
-> [!image/Retrieval-based mechanism for tabular data classification]
+> [!image] Retrieval-based mechanism for tabular data classification
 
 ![Similarity module](/static/images/reading/tabr/similarity.png)
 
-> [!image/Similarity mechanism]
+> [!image] Similarity mechanism
 
 ### Retrieval Mechanism
 

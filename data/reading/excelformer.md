@@ -26,7 +26,7 @@ Deep learning on tabular data faces three challenges:
 
 ![Overview](/static/images/reading/excelformer/overview.png)
 
-> [!image/Overview of aproach]
+> [!image] Overview of aproach
 > 3 main components: Semi-Permeable Attention, Interpolation-based data-augmentation(Feat-mix, HID-mix), and Attentive FFNs.
 
 ### Semi-Permiable Attention
@@ -52,7 +52,7 @@ where $I(\bf{f}_i)$ is the importance of the $i$-th feature. In other words, thi
 
 ![Illustration of HID and FEAT mix](/static/images/reading/excelformer/hid-feat-mix.png)
 
-> [!image/Illustration of HID and FEAT mix]
+> [!image] Illustration of HID and FEAT mix
 > HID-mix operates on the embedding level, while FEAT-mix operates on the feature level.
 
 #### HID-mix

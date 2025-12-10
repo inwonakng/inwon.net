@@ -22,7 +22,7 @@ This paper proposes PTab, a method to fine-tune a pre-trained language model int
 
 ![Overview of approach](/static/images/reading/ptab/overview.png)
 
-> [!image/Overview of PTab]
+> [!image] Overview of PTab
 
 ### 1. Modality transformation
 

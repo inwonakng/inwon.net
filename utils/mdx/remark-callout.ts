@@ -5,10 +5,15 @@ import type { Plugin } from 'unified'
 import type { Root, PhrasingContent } from 'mdast'
 
 const alertRegex =
-  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG|MOTIVATION|INTUITION|SETTING|IMAGE|TABLE)\]/i
+  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG|DEFINITION|MOTIVATION|INTUITION|SETTING|IMAGE|TABLE)\]/i
+
+/**
+ * NOTE: Adding new icons.
+ * The SVGs are from lucid icons (https://lucide.dev), which is what Obsidian client also uses.
+ */
 
 const alertLegacyRegex =
-  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG|MOTIVATION|INTUITION|SETTING|IMAGE|TABLE)(\/.*)?\]/i
+  /^\[!(INFO|NOTE|TIP|IMPORTANT|WARNING|DANGER|ABSTRACT|QUESTION|BUG|DEFINITION|MOTIVATION|INTUITION|SETTING|IMAGE|TABLE)(\/.*)?\]/i
 
 type Option = {
   /**
@@ -131,6 +136,7 @@ type IconType =
   | 'abstract'
   | 'question'
   | 'bug'
+  | 'definition'
   | 'motivation'
   | 'intuition'
   | 'setting'
@@ -293,6 +299,20 @@ const iconData: Record<IconType, IconData[]> = {
     { hName: 'path', hProperties: { d: 'M20.97 5c0 2.1-1.6 3.8-3.5 4' } },
     { hName: 'path', hProperties: { d: 'M22 13h-4' } },
     { hName: 'path', hProperties: { d: 'M17.2 17c2.1.1 3.8 1.9 3.8 4' } },
+  ],
+  definition: [
+    {
+      hName: 'path',
+      hProperties: {
+        d: 'M12 7v14',
+      },
+    },
+    {
+      hName: 'path',
+      hProperties: {
+        d: 'M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z',
+      },
+    },
   ],
   motivation: [
     {

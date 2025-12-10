@@ -23,7 +23,7 @@ This paper explores applying data distillation for the _context data_ for TabPFN
 
 ![Comparison of traditional DD and ICD for TabPFN](/static/images/reading/icl-dd-tabpfn/distill-compare.png)
 
-> [!image/Comparison of traditional data distillation and in-context distillation for TabPFN]
+> [!image] Comparison of traditional data distillation and in-context distillation for TabPFN
 > Comparison of traditional data distillation (DD) and in-context data distillation (ICD) for TabPFN.
 
 Minimize the following to _maximize the likelihood of $\mathcal{D}_{\text{train}}$ given $\mathcal{D}_{\text{distill}}$\_:
@@ -43,7 +43,7 @@ $\nabla_{\mathcal{D}}\mathcal{L}(\mathcal{D}_{\text{train}} \rightarrow \mathcal
 
 ![Evolution of distilled data points](/static/images/reading/icl-dd-tabpfn/distill-evolution.png)
 
-> [!image/Evolution of distilled data points]
+> [!image] Evolution of distilled data points
 > Evolution of the distilled points.
 >
 > - dots with white outline: distilled points.

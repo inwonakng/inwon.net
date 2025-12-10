@@ -1,5 +1,4 @@
 ---
-aliases: []
 tags:
   - paper-summary
   - language-model
@@ -21,7 +20,7 @@ A modified TabPFN architecture that uses language models to generate semantics-a
 
 ![Diagram of ConTextTab](/static/images/reading/contexttab/overview.png)
 
-> [!image/Diagram of ConTextTab]
+> [!image] Diagram of ConTextTab
 
 The authors propose a new architecture based on TabPFN called ConTextTab, which now incorporates a language model (bert) to generate semantics-aware features as input to the backbone PFN model.
 

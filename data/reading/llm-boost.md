@@ -1,6 +1,6 @@
 ---
-title: "Transformers Boost the Performance of Decision Trees on Tabular Data across Sample Sizes"
-summary: "Summary of the LLM/PFN-Boost paper"
+title: 'Transformers Boost the Performance of Decision Trees on Tabular Data across Sample Sizes'
+summary: 'Summary of the LLM/PFN-Boost paper'
 tags:
   - paper-summary
   - boosting
@@ -12,9 +12,6 @@ tags:
   - transformers
 date: 2025-02-06
 draft: false
-aliases:
-  - LLM-Boost
-  - PFN-Boost
 images:
   - /static/images/reading/llm-boost/architecture.png
 ---
@@ -27,7 +24,7 @@ This paper proposes LLM-Boost and PFN-Boost, methods that leverage either a pre-
 
 ![Overview of proposed approach](/static/images/reading/llm-boost/architecture.png)
 
-> [!image/Overview of proposed approach]
+> [!image] Overview of proposed approach
 > As seen in this diagram, the LLM is prompted to perform a classification task on the input dataset. The logits of the LLM's label (next token) prediction is then used as the first tree's classification. The following trees learn on the previous trees' residual.
 
 The authors leverage a transformer model (either LLM or PFN) as the first classifier in the ensemble. the rest of the ensemble, which are decision trees, are then trained on the residuals of the previous model (including the transformer).
@@ -61,7 +58,6 @@ The authors consider two types of baselines to compare against:
 - 16 datasets from UCI and TabLLM[^1].
 - Less than 5 classes. (they all seem to be classification)
 - Tested on 10, 25, 50, 100, 200, 500 and full dataset.
-
 
 ## Findings
 
